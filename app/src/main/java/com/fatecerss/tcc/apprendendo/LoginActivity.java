@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-
+    
     //Variaveis
     private Button bt_signUp;
     private Button bt_login;
@@ -31,6 +31,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private TextView lb_start;
     private ProgressDialog progressDialog;
     private ConstraintLayout screenLayout;
+    private String teste;
 
     private FirebaseAuth firebaseAuth;
 
