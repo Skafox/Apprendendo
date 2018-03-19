@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Apprendendo</string>
+    <string name="btLoginText">Log in</string>
+    <string name="btSignUpText">Sign up</string>
+    <string name="emailloginvalidation">Please insert your E-mail address</string>
+    <string name="passwordloginvalidation">Please insert your password</string>
+    <string name="pg_loggingin">Logging in, please wait.</string>
+    <string name="loginfail">Could not find the user, click Sign Up if you do not have an account</string>
+    <string name="title_activity_home">HomeActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="textViewStartText">Tap anywhere to expand...</string>
+    <string name="editTextEmailHint">Enter your e-mail</string>
+    <string name="editTextPasswordHint">Password</string>
+</resources>

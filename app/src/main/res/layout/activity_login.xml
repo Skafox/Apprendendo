@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutScreen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_astronomia"
+    tools:context="com.fatecerss.tcc.apprendendo.LoginActivity">
+
+    <LinearLayout
+        android:layout_width="@dimen/layoutEmailWidth"
+        android:layout_height="@dimen/layoutEmailHeight"
+        android:layout_marginBottom="@dimen/layoutEmailMargin"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <TextView
+            android:id="@+id/textViewStart"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/textViewStartHeight"
+            android:layout_weight="1"
+            android:shadowColor="@color/colorStartLabel"
+            android:shadowDx="2"
+            android:shadowDy="4"
+            android:shadowRadius="4"
+            android:text="@string/textViewStartText"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/textViewStart"
+            android:textStyle="bold|italic"
+            android:visibility="visible" />
+
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="@string/editTextEmailHint"
+            android:inputType="textEmailAddress"
+            android:shadowColor="@color/colorStartLabel"
+            android:shadowDx="2"
+            android:shadowDy="4"
+            android:shadowRadius="4"
+            android:textColor="@color/colorAccent"
+            android:textColorHint="@color/colorPrimary"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="@string/editTextPasswordHint"
+            android:inputType="textPassword"
+            android:textColor="@color/colorAccent"
+            android:textColorHint="@color/colorPrimary"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="@dimen/layoutBtLoginWidth"
+        android:layout_height="@dimen/layoutBtLoginHeight"
+        android:layout_marginBottom="@dimen/btLoginLayoutMargin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <Button
+            android:id="@+id/btLogin"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="@dimen/btLoginWidth"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@color/colorPrimary"
+            android:text="@string/btLoginText" />
+
+        <Button
+            android:id="@+id/btSignUp"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="@dimen/btLoginWidth"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:background="@color/colorPrimaryDark"
+            android:text="@string/btSignUpText"
+            android:textColor="@android:color/background_light" />
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

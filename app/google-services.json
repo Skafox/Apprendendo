@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "81822411073",
+    "firebase_url": "https://apprendendo-e2f53.firebaseio.com",
+    "project_id": "apprendendo-e2f53",
+    "storage_bucket": "apprendendo-e2f53.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81822411073:android:7e1606be543fa183",
+        "android_client_info": {
+          "package_name": "com.fatecerss.tcc.apprendendo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "81822411073-e4kddr4qrrb9o46t00j2lafavnf92bv4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fatecerss.tcc.apprendendo",
+            "certificate_hash": "38378c9e5cf9dff561c6e3f00656f6494ab74705"
+          }
+        },
+        {
+          "client_id": "81822411073-jed7019aurk42sqktsjfr5lfh75ghgu7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDprxiOBlOl0XwjY8-K1tu-37lqIyag9a0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "81822411073-jed7019aurk42sqktsjfr5lfh75ghgu7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
