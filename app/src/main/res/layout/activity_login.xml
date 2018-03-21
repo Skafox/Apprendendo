@@ -46,7 +46,7 @@
             android:shadowDy="4"
             android:shadowRadius="4"
             android:textColor="@color/colorAccent"
-            android:textColorHint="@color/colorPrimary"
+            android:textColorHint="@color/colorWhite"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
@@ -60,7 +60,7 @@
             android:hint="@string/editTextPasswordHint"
             android:inputType="textPassword"
             android:textColor="@color/colorAccent"
-            android:textColorHint="@color/colorPrimary"
+            android:textColorHint="@color/colorWhite"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
@@ -92,9 +92,9 @@
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorAccent"
             android:text="@string/btSignUpText"
-            android:textColor="@android:color/background_light" />
+            android:textColor="@color/colorWhite" />
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

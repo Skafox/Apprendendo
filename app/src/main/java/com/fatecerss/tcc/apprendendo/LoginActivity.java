@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-    
+
     //Variaveis
     private Button bt_signUp;
     private Button bt_login;

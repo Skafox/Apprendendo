@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">Apprendendo</string>
     <string name="btLoginText">Log in</string>
     <string name="btSignUpText">Sign up</string>
@@ -6,6 +7,26 @@
     <string name="passwordloginvalidation">Please insert your password</string>
     <string name="pg_loggingin">Logging in, please wait.</string>
     <string name="loginfail">Could not find the user, click Sign Up if you do not have an account</string>
+    <string name="create_title">Create your account</string>
+    <string name="create_username">User Name</string>
+    <string name="create_email">E-mail</string>
+    <string name="create_password">Password</string>
+    <string name="create_confirmpassword">Confirm the password</string>
+    <string name="create_name">Name</string>
+    <string name="create_phone">Phone Number</string>
+    <string name="create_datebirth">Date of Birth</string>
+    <string name="create_biography">Biography</string>
+    <string name="create_button">SignUp</string>
+
+    <string name="menuOptionProfile">My Profile</string>
+    <string name="menuOptionCreateAd">Make an Ad!</string>
+    <string name="menuOptionSearchAd">Search an Ad</string>
+    <string name="menuOptionInterests">Interests</string>
+    <string name="menuOptionNegotiation">My Negotiations</string>
+    <string name="menuOptionContact">Contact or Suggestion?</string>
+    <string name="menuOptionSchedule">My Schedule</string>
+    <string name="menuHeaderSubtitle">Welcome to Apprendendo, the place where you can begin your new journey for learning.</string>
+
     <string name="title_activity_home">HomeActivity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>

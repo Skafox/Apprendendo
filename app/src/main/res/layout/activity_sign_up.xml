@@ -1,9 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.fatecerss.tcc.apprendendo.SignUpActivity">
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tb_create"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="@dimen/btCreateShadow"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="@string/create_title"
+            app:titleTextColor="@color/text" />
+
+        <EditText
+            android:id="@+id/tf_create_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/create_username"
+            android:inputType="textPersonName"
+            android:textColor="@color/primaryText"
+            android:textColorHint="@color/secondaryText" />
+
+        <EditText
+            android:id="@+id/tf_create_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/create_email"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/primaryText"
+            android:textColorHint="@color/secondaryText" />
+
+        <EditText
+            android:id="@+id/tf_create_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/create_password"
+            android:inputType="textPassword"
+            android:textColor="@color/primaryText"
+            android:textColorHint="@color/secondaryText" />
+
+        <EditText
+            android:id="@+id/tf_create_confirmpassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/create_confirmpassword"
+            android:inputType="textPassword"
+            android:textColor="@color/primaryText"
+            android:textColorHint="@color/secondaryText" />
+
+        <EditText
+            android:id="@+id/tf_create_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/create_name"
+            android:inputType="textPersonName"
+            android:textColor="@color/primaryText"
+            android:textColorHint="@color/secondaryText" />
+
+        <EditText
+            android:id="@+id/tf_create_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/create_phone"
+            android:inputType="phone"
+            android:textColor="@color/primaryText"
+            android:textColorHint="@color/secondaryText" />
+
+        <EditText
+            android:id="@+id/tf_datebirth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/create_datebirth"
+            android:inputType="date"
+            android:textColor="@color/primaryText"
+            android:textColorHint="@color/secondaryText" />
+
+        <EditText
+            android:id="@+id/tf_create_bio"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_weight="0.26"
+            android:ems="10"
+            android:hint="@string/create_biography"
+            android:inputType="textPersonName"
+            android:textColor="@color/primaryText"
+            android:textColorHint="@color/secondaryText" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="5"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_create"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="@dimen/create_bt_bottom"
+            android:layout_marginLeft="@dimen/create_bt_leftright"
+            android:layout_marginRight="@dimen/create_bt_leftright"
+            android:background="@color/colorAccent"
+            android:elevation="@dimen/btCreateShadow"
+            android:text="@string/create_button"
+            android:textColor="@color/text" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -15,5 +15,9 @@
     <dimen name="layoutEmailHeight">120dp</dimen>
     <dimen name="layoutEmailMargin">160dp</dimen>
     <dimen name="textViewStartHeight">40dp</dimen>
+    <dimen name="create_bt_bottom">10dp</dimen>
+    <dimen name="create_bt_leftright">20dp</dimen>
+    <dimen name="btCreateShadow">5dp</dimen>
+
 
 </resources>
