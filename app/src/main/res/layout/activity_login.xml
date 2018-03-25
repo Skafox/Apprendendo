@@ -5,96 +5,73 @@
     android:id="@+id/layoutScreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_astronomia"
-    tools:context="com.fatecerss.tcc.apprendendo.LoginActivity">
-
-    <LinearLayout
-        android:layout_width="@dimen/layoutEmailWidth"
-        android:layout_height="@dimen/layoutEmailHeight"
-        android:layout_marginBottom="@dimen/layoutEmailMargin"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
-
-        <TextView
-            android:id="@+id/textViewStart"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/textViewStartHeight"
-            android:layout_weight="1"
-            android:shadowColor="@color/colorStartLabel"
-            android:shadowDx="2"
-            android:shadowDy="4"
-            android:shadowRadius="4"
-            android:text="@string/textViewStartText"
-            android:textAlignment="center"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/textViewStart"
-            android:textStyle="bold|italic"
-            android:visibility="visible" />
-
-        <EditText
-            android:id="@+id/editTextEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="@string/editTextEmailHint"
-            android:inputType="textEmailAddress"
-            android:shadowColor="@color/colorStartLabel"
-            android:shadowDx="2"
-            android:shadowDy="4"
-            android:shadowRadius="4"
-            android:textColor="@color/colorAccent"
-            android:textColorHint="@color/colorWhite"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
-
-        <EditText
-            android:id="@+id/editTextPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="@string/editTextPasswordHint"
-            android:inputType="textPassword"
-            android:textColor="@color/colorAccent"
-            android:textColorHint="@color/colorWhite"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
-    </LinearLayout>
+    tools:context="com.fatecerss.tcc.apprendendo.view.LoginActivity">
 
     <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="@dimen/layoutBtLoginWidth"
-        android:layout_height="@dimen/layoutBtLoginHeight"
-        android:layout_marginBottom="@dimen/btLoginLayoutMargin"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/relativeLayoutLogo"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="@dimen/logoLayoutMargin"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ImageView
+            android:id="@+id/imageViewLogo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/logo1"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutLogin"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginTop="@dimen/marginRelativeLayoutLogin"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayoutLogo">
 
         <Button
-            android:id="@+id/btLogin"
+            android:id="@+id/btLoginEmail"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_width="@dimen/btLoginWidth"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
+            android:layout_width="250dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="false"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
             android:background="@color/colorPrimary"
-            android:text="@string/btLoginText" />
-
-        <Button
-            android:id="@+id/btSignUp"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="@dimen/btLoginWidth"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:background="@color/colorAccent"
-            android:text="@string/btSignUpText"
+            android:elevation="@dimen/btCreateShadow"
+            android:text="@string/btLoginText"
+            android:textAllCaps="false"
             android:textColor="@color/colorWhite" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutSignUp"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/marginRelativeLayoutSignUp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="52dp"
+            android:text="@string/textViewSignUp"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

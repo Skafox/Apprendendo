@@ -52,7 +52,7 @@
             android:textColorHint="@color/secondaryText" />
 
         <EditText
-            android:id="@+id/tf_create_confirmpassword"
+            android:id="@+id/tf_create_confirm_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -82,7 +82,7 @@
             android:textColorHint="@color/secondaryText" />
 
         <EditText
-            android:id="@+id/tf_datebirth"
+            android:id="@+id/tf_birth_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -94,13 +94,37 @@
         <EditText
             android:id="@+id/tf_create_bio"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="70dp"
             android:layout_weight="0.26"
             android:ems="10"
             android:hint="@string/create_biography"
             android:inputType="textPersonName"
             android:textColor="@color/primaryText"
             android:textColorHint="@color/secondaryText" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/rbAlunoType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rbAlunoType"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="70dp" />
+
+            <RadioButton
+                android:id="@+id/rbProfessorType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="70dp"
+                android:layout_toEndOf="@+id/rbAlunoType"
+                android:text="@string/rbProfessorType" />
+        </RelativeLayout>
+
     </LinearLayout>
 
     <LinearLayout

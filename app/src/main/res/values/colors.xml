@@ -8,4 +8,5 @@
     <color name="secondaryText">#757575</color>
     <color name="colorWhite">#ffffff</color>
     <color name="colorStartLabel">#000000</color>
+    <color name="colorFacebook">#536dfe</color>
 </resources>

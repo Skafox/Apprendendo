@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.fatecerss.tcc.apprendendo.ProfileActivity">
+    tools:context="com.fatecerss.tcc.apprendendo.view.ProfileActivity">
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_viewMenu"
