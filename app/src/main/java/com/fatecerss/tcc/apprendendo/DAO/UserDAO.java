@@ -14,11 +14,13 @@ abstract class UserDAO extends AppCompatActivity{
 
     abstract void saveUserInDatabase(Object obj);
 
-    abstract Object readUserInDatabase(Object obj);
+    abstract Object readUserInDatabase(String userEmail);
 
     abstract void enableUserInDatabase(Object obj);
 
     abstract void disableUserInDatabase(Object obj);
+
+    abstract void updateUserInDatabase(Object obj);
 
     abstract int validateUserInDatabase(Object obj);
 

@@ -4,6 +4,7 @@ import android.text.TextUtils;
 
 import com.fatecerss.tcc.apprendendo.DAO.LearnerDAO;
 import com.fatecerss.tcc.apprendendo.model.Learner;
+import com.fatecerss.tcc.apprendendo.model.Teacher;
 import com.google.firebase.database.Query;
 
 /**
@@ -12,7 +13,7 @@ import com.google.firebase.database.Query;
 
 public class LearnerController extends UserController {
 
-    private LearnerDAO learnerDAO;
+    private LearnerDAO learnerDAO = new LearnerDAO();
 
     public int validateSignUp(Object learnerObject){
 
@@ -41,6 +42,16 @@ public class LearnerController extends UserController {
         return 0;
     }
 
+    public Object validateReadUserInDatabase(String email){
+        Learner learner;
+        learner = (Learner) learnerDAO.readUserInDatabase(email);
+        return learner;
+    }
 
+    public void validateUpdate(Object learnerObject){
+        Learner learner;
+        learner = (Learner) learnerObject;
+        learnerDAO.updateUserInDatabase(learner);
+    }
 
 }

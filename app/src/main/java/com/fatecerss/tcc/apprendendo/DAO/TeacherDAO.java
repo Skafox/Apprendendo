@@ -32,7 +32,7 @@ public class TeacherDAO extends UserDAO {
     private static int USERDOESNOTEXISTS = 1;
     private static int SUCCESS = 1;
     private static int result = 0;
-    Teacher resultTeacher;
+    Teacher resultTeacher = null;
     Teacher updateTeacher;
 
     //Metodos
@@ -64,15 +64,22 @@ public class TeacherDAO extends UserDAO {
         return 0;
     }
 
+    //CREATE
     protected void saveUserInDatabase(Object teacherObject){
         Teacher teacher = (Teacher) teacherObject;
         teacherReference.child(teacher.getUsername()).setValue(teacher);
     }
 
-    public Object readUserInDatabase(Object teacherObject){
-        Learner learner = (Learner) teacherObject;
-        resultReference = teacherReference.child(learner.getUsername());
-        resultReference.addValueEventListener(new ValueEventListener() {
+    //UPDATE
+    public void updateUserInDatabase(Object teacherObject){
+        saveUserInDatabase(teacherObject);
+    }
+
+    //READ
+    public Object readUserInDatabase(String userEmail){
+        // resultReference = teacherReference.child(teacher.getUsername());
+        Query query = teacherReference.orderByChild("email").equalTo(userEmail);
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 resultTeacher = (Teacher) dataSnapshot.getValue();
@@ -84,6 +91,7 @@ public class TeacherDAO extends UserDAO {
         return resultTeacher;
     }
 
+    //ENABLE
     public void enableUserInDatabase(Object teacherObject){
         Teacher teacher = (Teacher) teacherObject;
         updateReference = teacherReference.child(teacher.getUsername());
@@ -101,6 +109,7 @@ public class TeacherDAO extends UserDAO {
         });
     }
 
+    //DISABLE
     public void disableUserInDatabase(Object teacherObject){
         Teacher teacher = (Teacher) teacherObject;
         updateReference = teacherReference.child(teacher.getUsername());
@@ -118,6 +127,7 @@ public class TeacherDAO extends UserDAO {
         });
     }
 
+    //VALIDATE
     public int validateUserInDatabase(Object teacherObject) {
         Teacher teacher = (Teacher) teacherObject;
         Query queryRef = null;
@@ -128,5 +138,6 @@ public class TeacherDAO extends UserDAO {
             return USERALREADYEXISTS;
         }
     }
+
 
 }

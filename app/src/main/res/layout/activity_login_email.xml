@@ -23,13 +23,8 @@
             android:ems="10"
             android:hint="@string/editTextEmailHint"
             android:inputType="textEmailAddress"
-            android:shadowColor="@color/colorStartLabel"
-            android:shadowDx="2"
-            android:shadowDy="4"
-            android:shadowRadius="4"
             android:textColor="@color/colorAccent"
             android:textColorHint="@color/colorPrimary"
-            android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
 
@@ -41,13 +36,8 @@
             android:ems="10"
             android:hint="@string/editTextPasswordHint"
             android:inputType="textPassword"
-            android:shadowColor="@color/colorStartLabel"
-            android:shadowDx="2"
-            android:shadowDy="4"
-            android:shadowRadius="4"
             android:textColor="@color/colorAccent"
             android:textColorHint="@color/colorPrimary"
-            android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
     </LinearLayout>
@@ -82,7 +72,7 @@
 
     <RelativeLayout
         android:id="@+id/relativeLayoutLogo"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="100dp"
         android:layout_marginTop="@dimen/logoLayoutMargin"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -96,7 +86,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
-            app:srcCompat="@drawable/logo1" />
+            app:srcCompat="@drawable/logo2" />
     </RelativeLayout>
 
     <RelativeLayout

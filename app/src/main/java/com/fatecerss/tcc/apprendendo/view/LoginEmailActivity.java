@@ -34,8 +34,7 @@ public class LoginEmailActivity extends AppCompatActivity implements View.OnClic
 
         //inicializa os componentes da tela
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        //carrega as variaveis de referência para cada componente na tela e desabilita para fazer o efeito do 'tap anywhere...'
+        setContentView(R.layout.activity_login_email);
         bt_signUp = (Button) findViewById(R.id.btSignUp);
         bt_login = (Button) findViewById(R.id.btLogin);
         tf_email = (EditText) findViewById(R.id.editTextEmail);
@@ -78,8 +77,8 @@ public class LoginEmailActivity extends AppCompatActivity implements View.OnClic
                         if (task.isSuccessful()){
                             progressDialog.dismiss();
                             finish();
-                            Intent intentHome = new Intent(getApplicationContext(), HomeActivity.class);
-                            startActivity(intentHome);
+                            Intent intentMyProfile = new Intent(getApplicationContext(), MyProfileActivity.class);
+                            startActivity(intentMyProfile);
                         }
                     }
                 });
@@ -99,8 +98,8 @@ public class LoginEmailActivity extends AppCompatActivity implements View.OnClic
         }
 
         if (view == bt_signUp) {
-            finish();
             startActivity(new Intent(this, SignUpActivity.class));
+            finish();
         }
     }
 

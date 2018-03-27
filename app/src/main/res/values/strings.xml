@@ -19,7 +19,11 @@
     <string name="create_button">SignUp</string>
     <string name="signupmissing">Some informations are missing, please make sure all the fields are filled</string>
     <string name="signupfail">Could not register. Please contact the administrators.</string>
+    <string name="updatefail">Could not find the user. Please contact the administrators.</string>
     <string name="pg_signingup">Registering, please wait.</string>
+    <string name="radioButtonEmpty">Please select the type of the account.</string>
+    <string name="updateWarning">WARNING!</string>
+    <string name="updateMessage">Are you sure you want to update your information?</string>
 
 
     <string name="menuOptionProfile">My Profile</string>
@@ -44,4 +48,8 @@
     <string name="textViewSignUp">Don\'t have an account? Click here to sign up!</string>
     <string name="rbAlunoType">Learner</string>
     <string name="rbProfessorType">Teacher</string>
+
+    <string name="my_profile">My Profile</string>
+    <string name="sw_account">Enable/Disable account</string>
+    <string name="btUpdate">Update My Profile</string>
 </resources>

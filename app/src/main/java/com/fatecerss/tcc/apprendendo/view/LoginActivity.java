@@ -33,8 +33,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         //carrega as variaveis de referência para cada componente na tela e desabilita para fazer o efeito do 'tap anywhere...'
-        tf_signUp = (TextView) findViewById(R.id.btSignUp);
-        bt_login = (Button) findViewById(R.id.btLogin);
+        tf_signUp = (TextView) findViewById(R.id.textViewSignUp);
+        bt_login = (Button) findViewById(R.id.btLoginEmail);
 
         tf_signUp.setOnClickListener(this);
         bt_login.setOnClickListener(this);
@@ -45,17 +45,34 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick (View view){
 
-        if (view == tf_signUp){
-            finish();
+        if (view == bt_login){
             startActivity(new Intent(this, LoginEmailActivity.class));
+            finish();
         }
 
         if (view == tf_signUp) {
-            finish();
             startActivity(new Intent(this, SignUpActivity.class));
+            finish();
         }
     }
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+    /* sombra no texto layout
+            android:shadowDx="2"
+            android:shadowDy="4"
+            android:shadowRadius="4"
+            android:shadowColor="@color/colorStartLabel"
+    */
 }

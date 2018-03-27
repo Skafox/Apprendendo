@@ -10,4 +10,7 @@ abstract class UserController {
 
     abstract int validateSignUp(Object obj);
 
+    abstract Object validateReadUserInDatabase(String email);
+
+    abstract void validateUpdate(Object obj);
 }

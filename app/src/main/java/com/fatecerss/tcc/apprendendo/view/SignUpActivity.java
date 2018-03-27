@@ -1,5 +1,6 @@
 package com.fatecerss.tcc.apprendendo.view;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
@@ -35,14 +36,14 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private Learner learner;
     private Teacher teacher;
     private ProgressDialog progressDialog;
-    private LearnerController learnerController;
-    private TeacherController teacherController;
+    private LearnerController learnerController = new LearnerController();
+    private TeacherController teacherController = new TeacherController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        bt_signUp = (Button) findViewById(R.id.btSignUp);
+        bt_signUp = (Button) findViewById(R.id.bt_create);
         tf_username = (EditText) findViewById(R.id.tf_create_username);
         tf_email = (EditText) findViewById(R.id.tf_create_email);
         tf_password = (EditText) findViewById(R.id.tf_create_password);
@@ -57,20 +58,23 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         progressDialog = new ProgressDialog(this);
 
         bt_signUp.setOnClickListener(this);
+        rbAlunoType.setOnClickListener(this);
+        rbProfessorType.setOnClickListener(this);
     }
+
 
     public void onRadioButtonClicked(View view) {
         boolean checked = ((RadioButton) view).isChecked();
 
-        switch(view.getId()) {
+        switch (view.getId()) {
             case R.id.rbAlunoType:
                 if (checked)
                     this.tipo = 1;
-                    break;
+                break;
             case R.id.rbProfessorType:
                 if (checked)
                     this.tipo = 2;
-                    break;
+                break;
         }
     }
 
@@ -100,8 +104,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
                 if (learnerController.validateSignUp(learner) == 1){
                     progressDialog.dismiss();
-                    Intent intentHome = new Intent(getApplicationContext(), HomeActivity.class);
-                    startActivity(intentHome);
+                    Intent intentMyProfile = new Intent(getApplicationContext(), MyProfileActivity.class);
+                    startActivity(intentMyProfile);
+                    finish();
                 }
 
                 if (learnerController.validateSignUp(learner) == 0){
@@ -132,19 +137,28 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
                 if (teacherController.validateSignUp(teacher) == 1){
                     progressDialog.dismiss();
-                    Intent intentHome = new Intent(getApplicationContext(), HomeActivity.class);
-                    startActivity(intentHome);
+                    Intent intentMyProfile = new Intent(getApplicationContext(), MyProfileActivity.class);
+                    startActivity(intentMyProfile);
+                    finish();
                 }
 
                 if (teacherController.validateSignUp(teacher) == 0){
-                    Toast.makeText(this, this.getString(R.string.signupfail), Toast.LENGTH_LONG).show();
                     progressDialog.dismiss();
+                    Toast.makeText(this, this.getString(R.string.signupfail), Toast.LENGTH_LONG).show();
                 }
             }
 
             else {
-
+                Toast.makeText(this, this.getString(R.string.radioButtonEmpty), Toast.LENGTH_LONG).show();
             }
+        }
+
+        if (view == rbAlunoType){
+            onRadioButtonClicked(rbAlunoType);
+        }
+
+        if (view == rbProfessorType){
+            onRadioButtonClicked(rbProfessorType);
         }
     }
 

@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.fatecerss.tcc.apprendendo.model.Learner;
+import com.fatecerss.tcc.apprendendo.model.Teacher;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -79,14 +80,19 @@ public class LearnerDAO extends UserDAO {
         learnerReference.child(learner.getUsername()).setValue(learner);
     }
 
+    //UPDATE
+    public void updateUserInDatabase(Object learnerObject){
+        saveUserInDatabase(learnerObject);
+    }
+
     //READ
-    public Object readUserInDatabase(Object learnerObject){
-        Learner learner = (Learner) learnerObject;
-        resultReference = learnerReference.child(learner.getUsername());
-        resultReference.addValueEventListener(new ValueEventListener() {
+    public Object readUserInDatabase(String userEmail){
+        // resultReference = teacherReference.child(teacher.getUsername());
+        Query query = learnerReference.orderByChild("email").equalTo(userEmail);
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                    resultLearner = (Learner) dataSnapshot.getValue();
+                resultLearner = (Learner) dataSnapshot.getValue();
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
