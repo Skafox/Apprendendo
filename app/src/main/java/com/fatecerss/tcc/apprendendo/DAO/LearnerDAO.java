@@ -27,16 +27,18 @@ import com.google.firebase.database.ValueEventListener;
 public class LearnerDAO extends UserDAO {
 
     //Variaveis
-    private static FirebaseAuth firebaseAuth;
+    private static FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private static DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-    private static DatabaseReference learnerReference = databaseReference.child("learners");
+    private static DatabaseReference usersReference = databaseReference.child("users");
     private static DatabaseReference resultReference = databaseReference.child("learners");
+    private static DatabaseReference learnerReference = databaseReference.child("learners");
     private static DatabaseReference updateReference = databaseReference.child("learners");
 
     private static int USERALREADYEXISTS = 0;
     private static int USERDOESNOTEXISTS = 1;
     private static int SUCCESS = 1;
-    private static int result = 0;
+    private static int result = -1;
+    Learner registerLearner;
     Learner resultLearner;
     Learner updateLearner;
 
@@ -46,8 +48,9 @@ public class LearnerDAO extends UserDAO {
 
     }
 
-    public int signUp(final Learner learner){
+    public int signUp(Learner learner){
 
+        registerLearner = learner;
         String username = learner.getUsername().trim();
         String email = learner.getEmail().trim();
         String password = learner.getPassword().trim();
@@ -61,10 +64,8 @@ public class LearnerDAO extends UserDAO {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            if (validateUserInDatabase(learner) == 1){
-                                saveUserInDatabase(learner);
+                                usersReference.setValue(registerLearner);
                                 result = SUCCESS;
-                            }
                         }
                     }
                 });
@@ -75,14 +76,13 @@ public class LearnerDAO extends UserDAO {
     }
 
     //CREATE
-    protected void saveUserInDatabase(Object learnerObject){
-        Learner learner = (Learner) learnerObject;
-        learnerReference.child(learner.getUsername()).setValue(learner);
+    protected void saveUserInDatabase(Learner learner){
+        usersReference.child(learner.getUsername()).setValue(learner);
     }
 
     //UPDATE
-    public void updateUserInDatabase(Object learnerObject){
-        saveUserInDatabase(learnerObject);
+    public void updateUserInDatabase(Learner learner){
+        saveUserInDatabase(learner);
     }
 
     //READ
@@ -140,14 +140,26 @@ public class LearnerDAO extends UserDAO {
     }
 
     //DOES THE USER ALREADY EXIST?
-    public int validateUserInDatabase(Object learnerObject) {
-        Learner learner = (Learner) learnerObject;
-        Query queryRef = null;
-        queryRef = learnerReference.orderByChild("username").equalTo(learner.getUsername());
-        if (queryRef == null) {
-            return USERDOESNOTEXISTS;
-        } else {
-            return USERALREADYEXISTS;
-        }
+    public int validateUserInDatabase(String learnerUsername) {
+
+        Query queryRef = queryRef = learnerReference.orderByChild("username").equalTo(learnerUsername);
+        queryRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String doesTheNameExist = null;
+                doesTheNameExist = dataSnapshot.getValue(String.class);
+                if (doesTheNameExist == null) {
+                    result = USERDOESNOTEXISTS;
+                } else {
+                    result = USERALREADYEXISTS;
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        return result;
     }
 }

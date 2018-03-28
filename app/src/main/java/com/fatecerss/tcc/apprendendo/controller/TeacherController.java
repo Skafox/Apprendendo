@@ -15,9 +15,8 @@ public class TeacherController extends UserController {
 
     private TeacherDAO teacherDAO = new TeacherDAO();
 
-    public int validateSignUp(Object teacherObject){
+    public int validateSignUp(Learner teacher) {
 
-        Teacher teacher = (Teacher) teacherObject;
 
         String username = teacher.getUsername().trim();
         String email = teacher.getEmail().trim();
@@ -32,16 +31,17 @@ public class TeacherController extends UserController {
             return -1;
         }
         //Chamar DAO para validar se email ja existe
-        if (teacherDAO.validateUserInDatabase(teacher) == 0){
+        /*if (teacherDAO.validateUserInDatabase(teacher) == 0){
             return 0;
         }
 
         //Chamar DAO para cadastrar um novo
         if (teacherDAO.signUp(teacher) == 1){
             return 1;
-        }
+        }*/
         return 0;
     }
+
 
     public Object validateReadUserInDatabase(String email){
         Teacher teacher;
@@ -50,8 +50,8 @@ public class TeacherController extends UserController {
     }
 
     public void validateUpdate(Object teacherObject){
-        Teacher teacher;
-        teacher = (Teacher) teacherObject;
+        Learner teacher;
+        teacher = (Learner) teacherObject;
         teacherDAO.updateUserInDatabase(teacher);
     }
 }

@@ -41,7 +41,7 @@ public class TeacherDAO extends UserDAO {
 
     }
 
-    public int signUp(final Teacher teacher){
+    public int signUp(final Learner teacher){
 
         String email = teacher.getEmail().trim();
         String password = teacher.getPassword().trim();
@@ -51,7 +51,7 @@ public class TeacherDAO extends UserDAO {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            if (validateUserInDatabase(teacher) == 1) {
+                            if (validateUserInDatabase(teacher.getUsername()) == 1) {
                                 saveUserInDatabase(teacher);
                                 result = SUCCESS;
                             }
@@ -65,13 +65,12 @@ public class TeacherDAO extends UserDAO {
     }
 
     //CREATE
-    protected void saveUserInDatabase(Object teacherObject){
-        Teacher teacher = (Teacher) teacherObject;
-        teacherReference.child(teacher.getUsername()).setValue(teacher);
+    protected void saveUserInDatabase(Learner teacherObject){
+        teacherReference.child(teacherObject.getUsername()).setValue(teacherObject);
     }
 
     //UPDATE
-    public void updateUserInDatabase(Object teacherObject){
+    public void updateUserInDatabase(Learner teacherObject){
         saveUserInDatabase(teacherObject);
     }
 
@@ -100,7 +99,7 @@ public class TeacherDAO extends UserDAO {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 updateTeacher = (Teacher) dataSnapshot.getValue();
                 updateTeacher.setStatus("ENABLED");
-                saveUserInDatabase(updateTeacher);
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -118,7 +117,7 @@ public class TeacherDAO extends UserDAO {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 updateTeacher = (Teacher) dataSnapshot.getValue();
                 updateTeacher.setStatus("DISABLED");
-                saveUserInDatabase(updateTeacher);
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -128,10 +127,9 @@ public class TeacherDAO extends UserDAO {
     }
 
     //VALIDATE
-    public int validateUserInDatabase(Object teacherObject) {
-        Teacher teacher = (Teacher) teacherObject;
+    public int validateUserInDatabase(String username) {
         Query queryRef = null;
-        queryRef = teacherReference.orderByChild("username").equalTo(teacher.getUsername());
+        queryRef = teacherReference.orderByChild("username").equalTo(username);
         if (queryRef == null) {
             return USERDOESNOTEXISTS;
         } else {

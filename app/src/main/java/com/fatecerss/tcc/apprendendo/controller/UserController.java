@@ -8,7 +8,7 @@ import com.fatecerss.tcc.apprendendo.model.Learner;
 
 abstract class UserController {
 
-    abstract int validateSignUp(Object obj);
+    abstract int validateSignUp(Learner learner);
 
     abstract Object validateReadUserInDatabase(String email);
 

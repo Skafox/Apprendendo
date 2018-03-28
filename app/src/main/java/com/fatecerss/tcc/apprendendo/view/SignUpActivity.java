@@ -19,6 +19,8 @@ import com.fatecerss.tcc.apprendendo.controller.TeacherController;
 import com.fatecerss.tcc.apprendendo.model.Learner;
 import com.fatecerss.tcc.apprendendo.model.Teacher;
 
+import static android.R.attr.checked;
+
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button bt_signUp;
@@ -30,14 +32,13 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private EditText tf_phone;
     private EditText tf_birthdate;
     private EditText tf_bio;
-    private RadioButton rbAlunoType;
-    private RadioButton rbProfessorType;
     private int tipo=0;
     private Learner learner;
-    private Teacher teacher;
+    //private Teacher teacher;
     private ProgressDialog progressDialog;
-    private LearnerController learnerController = new LearnerController();
+    private LearnerController learnerController;
     private TeacherController teacherController = new TeacherController();
+    private int statusControl=100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,114 +53,102 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         tf_phone = (EditText) findViewById(R.id.tf_create_phone);
         tf_birthdate = (EditText) findViewById(R.id.tf_birth_date);
         tf_bio = (EditText) findViewById(R.id.tf_create_bio);
-        rbAlunoType = (RadioButton) findViewById(R.id.rbAlunoType);
-        rbProfessorType = (RadioButton) findViewById(R.id.rbProfessorType);
+        learnerController = new LearnerController();
 
         progressDialog = new ProgressDialog(this);
 
         bt_signUp.setOnClickListener(this);
-        rbAlunoType.setOnClickListener(this);
-        rbProfessorType.setOnClickListener(this);
     }
 
 
-    public void onRadioButtonClicked(View view) {
-        boolean checked = ((RadioButton) view).isChecked();
 
-        switch (view.getId()) {
-            case R.id.rbAlunoType:
-                if (checked)
-                    this.tipo = 1;
-                break;
-            case R.id.rbProfessorType:
-                if (checked)
-                    this.tipo = 2;
-                break;
-        }
-    }
 
     @Override
     public void onClick (View view) {
 
         if (view == bt_signUp) {
-            if (this.tipo == 1) {
+            String username = String.valueOf(tf_username.getText());
+            String email = String.valueOf(tf_email);
+            String password = String.valueOf(tf_password);
+            String name = String.valueOf(tf_name);
+            String phone = String.valueOf(tf_phone);
+            String birthdate = String.valueOf(tf_birthdate);
+            String bio = String.valueOf(tf_bio);
 
-                learner = new Learner((String.valueOf(tf_username)),
-                        (String.valueOf(tf_email)),
-                        (String.valueOf(tf_password)),
-                        (String.valueOf(tf_name)),
-                        (String.valueOf(tf_phone)),
-                        (String.valueOf(tf_birthdate)),
-                        (String.valueOf(tf_bio)));
+            learner = new Learner(username,email,password,name,phone,birthdate,bio);
 
+                progressDialog.setMessage(this.getString(R.string.pg_loggingin));
+                progressDialog.show();
 
-                if (learnerController.validateSignUp(learner) == -1){
+                statusControl = learnerController.validateSignUp(learner);
+                Toast.makeText(this, String.valueOf(statusControl), Toast.LENGTH_LONG).show();
+
+                /*if (statusControl == -1) {
                     Toast.makeText(this, this.getString(R.string.signupmissing), Toast.LENGTH_LONG).show();
                     learner = null;
                     return;
                 }
 
-                progressDialog.setMessage(this.getString(R.string.pg_loggingin));
-                progressDialog.show();
-
-                if (learnerController.validateSignUp(learner) == 1){
+                if (statusControl == 1) {
                     progressDialog.dismiss();
                     Intent intentMyProfile = new Intent(getApplicationContext(), MyProfileActivity.class);
                     startActivity(intentMyProfile);
                     finish();
                 }
 
-                if (learnerController.validateSignUp(learner) == 0){
+                if (statusControl == 0) {
                     Toast.makeText(this, this.getString(R.string.signupfail), Toast.LENGTH_LONG).show();
                     progressDialog.dismiss();
                 }
 
-            }
-            if (this.tipo == 2) {
-
-                teacher = new Teacher((String.valueOf(tf_username)),
-                        (String.valueOf(tf_email)),
-                        (String.valueOf(tf_password)),
-                        (String.valueOf(tf_name)),
-                        (String.valueOf(tf_phone)),
-                        (String.valueOf(tf_birthdate)),
-                        (String.valueOf(tf_bio)));
-
-
-                if (teacherController.validateSignUp(teacher) == -1){
-                    Toast.makeText(this, this.getString(R.string.signupmissing), Toast.LENGTH_LONG).show();
-                    learner = null;
-                    return;
-                }
-
-                progressDialog.setMessage(this.getString(R.string.pg_loggingin));
-                progressDialog.show();
-
-                if (teacherController.validateSignUp(teacher) == 1){
+                if (statusControl == 20) {
+                    Toast.makeText(this, ("ENTREI NO CONTROLLER PORRA MAS SEPA O USUARIO JA EXISTE"), Toast.LENGTH_LONG).show();
                     progressDialog.dismiss();
-                    Intent intentMyProfile = new Intent(getApplicationContext(), MyProfileActivity.class);
-                    startActivity(intentMyProfile);
-                    finish();
                 }
 
-                if (teacherController.validateSignUp(teacher) == 0){
+                if (statusControl == 30) {
+                    Toast.makeText(this, ("ENTREI NO CONTROLLER PORRA ENTREI NO DAO CARALHO MAS DEU BOSTA NO DAO"), Toast.LENGTH_LONG).show();
                     progressDialog.dismiss();
-                    Toast.makeText(this, this.getString(R.string.signupfail), Toast.LENGTH_LONG).show();
-                }
+                } else {
+                    Toast.makeText(this, ("Não consegui ir para a classe learnerController"), Toast.LENGTH_LONG).show();
+                    progressDialog.dismiss();
+                }*/
+
             }
+                /*if (rbProfessorType.isChecked()) {
 
-            else {
-                Toast.makeText(this, this.getString(R.string.radioButtonEmpty), Toast.LENGTH_LONG).show();
-            }
-        }
+                    teacher = new Teacher((String.valueOf(tf_username)),
+                            (String.valueOf(tf_email)),
+                            (String.valueOf(tf_password)),
+                            (String.valueOf(tf_name)),
+                            (String.valueOf(tf_phone)),
+                            (String.valueOf(tf_birthdate)),
+                            (String.valueOf(tf_bio)));
 
-        if (view == rbAlunoType){
-            onRadioButtonClicked(rbAlunoType);
-        }
+                    progressDialog.setMessage(this.getString(R.string.pg_loggingin));
+                    progressDialog.show();
 
-        if (view == rbProfessorType){
-            onRadioButtonClicked(rbProfessorType);
-        }
+                    statusControl = teacherController.validateSignUp(teacher);
+
+                    if (statusControl == -1) {
+                        Toast.makeText(this, this.getString(R.string.signupmissing), Toast.LENGTH_LONG).show();
+                        learner = null;
+                        return;
+                    }
+
+                    if (statusControl == 1) {
+                        progressDialog.dismiss();
+                        Intent intentMyProfile = new Intent(getApplicationContext(), MyProfileActivity.class);
+                        startActivity(intentMyProfile);
+                        finish();
+                    }
+
+                    if (statusControl == 0) {
+                        progressDialog.dismiss();
+                        Toast.makeText(this, this.getString(R.string.signupfail), Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(this, (this.getString(R.string.radioButtonEmpty)) + this.tipo, Toast.LENGTH_LONG).show();
+                }*/
     }
-
 }

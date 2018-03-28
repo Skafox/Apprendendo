@@ -13,11 +13,12 @@ import com.google.firebase.database.Query;
 
 public class LearnerController extends UserController {
 
+    public LearnerController(){
+    }
+
     private LearnerDAO learnerDAO = new LearnerDAO();
 
-    public int validateSignUp(Object learnerObject){
-
-        Learner learner = (Learner) learnerObject;
+    public int validateSignUp(Learner learner){
 
         String username = learner.getUsername().trim();
         String email = learner.getEmail().trim();
@@ -32,9 +33,9 @@ public class LearnerController extends UserController {
         return -1;
         }
         //Chamar DAO para validar se email ja existe
-        if (learnerDAO.validateUserInDatabase(learner) == 0){
-            return 0;
-        }
+        /*if (learnerDAO.validateUserInDatabase(username) == 0){
+            return 20;
+        }*/
         //Chamar DAO para cadastrar um novo
         if (learnerDAO.signUp(learner) == 1){
             return 1;

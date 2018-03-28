@@ -12,7 +12,7 @@ import com.fatecerss.tcc.apprendendo.model.Teacher;
 abstract class UserDAO extends AppCompatActivity{
 
 
-    abstract void saveUserInDatabase(Object obj);
+    abstract void saveUserInDatabase(Learner learner);
 
     abstract Object readUserInDatabase(String userEmail);
 
@@ -20,9 +20,9 @@ abstract class UserDAO extends AppCompatActivity{
 
     abstract void disableUserInDatabase(Object obj);
 
-    abstract void updateUserInDatabase(Object obj);
+    abstract void updateUserInDatabase(Learner learner);
 
-    abstract int validateUserInDatabase(Object obj);
+    abstract int validateUserInDatabase(String username);
 
 
 }
