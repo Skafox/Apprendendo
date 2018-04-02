@@ -44,8 +44,8 @@ public class TeacherController extends UserController {
 
 
     public Object validateReadUserInDatabase(String email){
-        Teacher teacher;
-        teacher = (Teacher) teacherDAO.readUserInDatabase(email);
+        Learner teacher;
+        teacher = (Learner) teacherDAO.readUserInDatabase(email);
         return teacher;
     }
 

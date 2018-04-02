@@ -17,24 +17,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.SignUpActivity"
-            android:parentActivityName=".view.LoginActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.fatecerss.tcc.apprendendo.view.LoginActivity" />
+            android:name=".view.SignUpActivity">
         </activity>
         <activity
             android:name=".view.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".view.LoginEmailActivity"
-            android:parentActivityName=".view.LoginActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.fatecerss.tcc.apprendendo.view.LoginActivity" />
+            android:name=".view.LoginEmailActivity">
         </activity>
-        <activity android:name=".view.MyProfileActivity"></activity>
+        <activity
+            android:name=".view.MyProfileActivity">
+        </activity>
     </application>
 
 </manifest>

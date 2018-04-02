@@ -30,7 +30,6 @@ public class LearnerDAO extends UserDAO {
     private static FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private static DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     private static DatabaseReference usersReference = databaseReference.child("users");
-    private static DatabaseReference resultReference = databaseReference.child("learners");
     private static DatabaseReference learnerReference = databaseReference.child("learners");
     private static DatabaseReference updateReference = databaseReference.child("learners");
 
@@ -86,7 +85,7 @@ public class LearnerDAO extends UserDAO {
     }
 
     //READ
-    public Object readUserInDatabase(String userEmail){
+    public Learner readUserInDatabase(String userEmail){
         // resultReference = teacherReference.child(teacher.getUsername());
         Query query = learnerReference.orderByChild("email").equalTo(userEmail);
         query.addValueEventListener(new ValueEventListener() {

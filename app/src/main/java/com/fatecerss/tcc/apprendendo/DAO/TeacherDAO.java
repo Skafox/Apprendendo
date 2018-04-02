@@ -32,7 +32,7 @@ public class TeacherDAO extends UserDAO {
     private static int USERDOESNOTEXISTS = 1;
     private static int SUCCESS = 1;
     private static int result = 0;
-    Teacher resultTeacher = null;
+    Learner resultTeacher = null;
     Teacher updateTeacher;
 
     //Metodos
@@ -75,13 +75,13 @@ public class TeacherDAO extends UserDAO {
     }
 
     //READ
-    public Object readUserInDatabase(String userEmail){
+    public Learner readUserInDatabase(String userEmail){
         // resultReference = teacherReference.child(teacher.getUsername());
         Query query = teacherReference.orderByChild("email").equalTo(userEmail);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                resultTeacher = (Teacher) dataSnapshot.getValue();
+                resultTeacher = (Learner) dataSnapshot.getValue();
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {

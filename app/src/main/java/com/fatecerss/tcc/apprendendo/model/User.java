@@ -38,6 +38,17 @@ abstract class User {
         this.status = "ENABLED";
     }
 
+    public User(String username, String email, String password, String name, String phone, String birthdate, String bio, String status) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.phone = phone;
+        this.birthdate = birthdate;
+        this.bio = bio;
+        this.status = status;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -100,5 +111,19 @@ abstract class User {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                username + '\'' +
+                email + '\'' +
+                password + '\'' +
+                name + '\'' +
+                phone + '\'' +
+                birthdate + '\'' +
+                bio + '\'' +
+                status + '\'' +
+                '}';
     }
 }

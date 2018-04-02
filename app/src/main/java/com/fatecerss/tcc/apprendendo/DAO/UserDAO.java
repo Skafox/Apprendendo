@@ -14,7 +14,7 @@ abstract class UserDAO extends AppCompatActivity{
 
     abstract void saveUserInDatabase(Learner learner);
 
-    abstract Object readUserInDatabase(String userEmail);
+    abstract Learner readUserInDatabase(String userEmail);
 
     abstract void enableUserInDatabase(Object obj);
 

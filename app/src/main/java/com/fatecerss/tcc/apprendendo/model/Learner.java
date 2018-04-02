@@ -1,5 +1,7 @@
 package com.fatecerss.tcc.apprendendo.model;
 
+import static android.R.attr.type;
+
 /**
  * Created by Sandro on 23/03/2018.
  */
@@ -14,8 +16,16 @@ public class Learner extends User{
         super(username,email,password,name,phone,birthdate,bio);
     }
 
+    public Learner (String username, String email, String password, String name, String phone, String birthdate, String bio, String status){
+        super(username,email,password,name,phone,birthdate,bio,status);
+    }
+
     public Learner(){
 
+    }
+
+    public Learner(String username){
+        super(username, null, null, null, null, null, null);
     }
 
 

@@ -70,6 +70,8 @@ public class LoginEmailActivity extends AppCompatActivity implements View.OnClic
         progressDialog.setMessage(this.getString(R.string.pg_loggingin));
         progressDialog.show();
 
+        final String loginfail = this.getString(R.string.loginfail);
+
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -80,11 +82,14 @@ public class LoginEmailActivity extends AppCompatActivity implements View.OnClic
                             Intent intentMyProfile = new Intent(getApplicationContext(), MyProfileActivity.class);
                             startActivity(intentMyProfile);
                         }
+                        if (!task.isSuccessful()){
+                            progressDialog.dismiss();
+                            Toast.makeText(LoginEmailActivity.this, loginfail, Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
 
-        progressDialog.dismiss();
-        Toast.makeText(this, this.getString(R.string.loginfail), Toast.LENGTH_LONG).show();
+
 
 
     }
