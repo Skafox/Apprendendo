@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Switch;
@@ -42,7 +43,7 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
     private String uId;
-    private String enable_disable;
+    private String enable_disable = "null";
     private AlertDialog.Builder warning;
     private static DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     private static DatabaseReference usersReference;
@@ -74,7 +75,16 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
         readUserInDatabase(uId);
 
         bt_update.setOnClickListener(this);
-        sw_active.setOnClickListener(this);
+        sw_active.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    enable_disable = "ENABLED";
+                }
+                if (!isChecked){
+                    enable_disable = "DISABLED";
+                }
+            }
+        });
 
     }
 
@@ -111,21 +121,11 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
                         }});
             warning.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
-                  finish();
+                  dialog.dismiss();
                 }});
             warning.show();
         }
 
-        if (v == sw_active){
-            if (sw_active.isChecked()){
-                sw_active.setChecked(false);
-                enable_disable = "DISABLED";
-            }
-            if (!sw_active.isChecked()){
-                sw_active.setChecked(true);
-                enable_disable = "ENABLED";
-            }
-        }
     }
 
     public void readUserInDatabase(String uId){
