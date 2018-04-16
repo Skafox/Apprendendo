@@ -1,32 +1,24 @@
 package com.fatecerss.tcc.apprendendo.view;
 
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.SwitchCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
 import com.fatecerss.tcc.apprendendo.R;
-import com.fatecerss.tcc.apprendendo.controller.LearnerController;
-import com.fatecerss.tcc.apprendendo.controller.TeacherController;
-import com.fatecerss.tcc.apprendendo.model.Learner;
-import com.fatecerss.tcc.apprendendo.model.Teacher;
+import com.fatecerss.tcc.apprendendo.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class MyProfileActivity extends AppCompatActivity implements View.OnClickListener {
@@ -75,6 +67,8 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
         readUserInDatabase(uId);
 
         bt_update.setOnClickListener(this);
+
+        //SETA UM LISTENER PARA O SWITCH
         sw_active.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
@@ -92,6 +86,7 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         if (v == bt_update) {
 
+            //CRIA UMA CAIXA DE DIALOGO COM BOTAO DE SIM E DE CANCELAR
             warning = new AlertDialog.Builder(this);
             final String updatedSuccess = this.getString(R.string.updateSuccess);
 
@@ -102,9 +97,10 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
             warning.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
 
-                                Learner updateLearner =
+                            //CASO SEJA APERTADO A OPÇÃO SIM, CRIA UM USUARIO NOVO PARA ATUALIZAR, COM OS CAMPOS DA TELA
+                                User updateUser =
 
-                                        new Learner (tf_username.getText().toString().trim(),
+                                        new User (tf_username.getText().toString().trim(),
                                                 tf_email.getText().toString().trim(),
                                                 tf_password.getText().toString().trim(),
                                                 tf_name.getText().toString().trim(),
@@ -113,10 +109,12 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
                                                 tf_bio.getText().toString().trim(),
                                                 enable_disable);
 
+                            //CHAMA O FIREBASE USER PARA ATUALIZAR O EMAIL E O PASSWORD DO USUARIO Q ESTA LOGADO
                                 firebaseUser.updateEmail(tf_email.getText().toString().trim());
                                 firebaseUser.updatePassword(tf_password.getText().toString().trim());
 
-                                usersReference.child(uId).setValue(updateLearner);
+                            //CADASTRA NO BANCO ONDE A CHAVE PRIMARIA == ID DO USUARIO QUE ESTA LOGADO, CADASTRA O NOVO OBJETO COM AS INFORMAÇÕES DA TELA
+                                usersReference.child(uId).setValue(updateUser);
                                 Toast.makeText(MyProfileActivity.this, updatedSuccess, Toast.LENGTH_LONG).show();
                         }});
             warning.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
@@ -129,6 +127,9 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
     }
 
     public void readUserInDatabase(String uId){
+
+        //RECEBE O ID DO USUARIO QUE ESTÁ LOGADO COMO PARÂMETRO
+
         usersReference.child(uId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

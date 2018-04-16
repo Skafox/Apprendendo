@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseAuth;
  * Created by Sandro on 23/03/2018.
  */
 
-abstract class User {
+public class User {
 
     private String username;
     private String email;
@@ -47,6 +47,16 @@ abstract class User {
         this.birthdate = birthdate;
         this.bio = bio;
         this.status = status;
+    }
+
+    public User(String username){
+        this.username = username;
+        this.email = null;
+        this.password = null;
+        this.name = null;
+        this.phone = null;
+        this.birthdate = null;
+        this.bio = null;
     }
 
     public String getUsername() {
