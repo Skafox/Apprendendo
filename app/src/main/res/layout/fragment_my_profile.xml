@@ -1,0 +1,133 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.fatecerss.tcc.apprendendo.view.MyProfileFragment">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/logoLayoutMargin">
+
+            <LinearLayout
+                android:id="@+id/dataLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="@dimen/padding">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="false"
+                    app:srcCompat="@drawable/ic_menu_camera" />
+
+                <EditText
+                    android:id="@+id/tf_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/create_username"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/primaryText" />
+
+                <EditText
+                    android:id="@+id/tf_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/create_email"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/primaryText" />
+
+                <EditText
+                    android:id="@+id/tf_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/create_password"
+                    android:inputType="textPassword"
+                    android:textColor="@color/primaryText" />
+
+                <EditText
+                    android:id="@+id/tf_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/create_name"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/primaryText" />
+
+                <EditText
+                    android:id="@+id/tf_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/create_phone"
+                    android:inputType="phone"
+                    android:textColor="@color/primaryText" />
+
+                <EditText
+                    android:id="@+id/tf_datebirth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/create_datebirth"
+                    android:inputType="date"
+                    android:textColor="@color/primaryText" />
+
+                <EditText
+                    android:id="@+id/tf_bio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/create_biography"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/primaryText" />
+
+                <Switch
+                    android:id="@+id/sw_account"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:padding="10dp"
+                    android:text="@string/sw_account"
+                    android:textColor="@color/primaryText" />
+
+                <Button
+                    android:id="@+id/btUpdate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_weight="6"
+                    android:background="@color/colorAccent"
+                    android:elevation="@dimen/btCreateShadow"
+                    android:text="@string/btUpdate"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

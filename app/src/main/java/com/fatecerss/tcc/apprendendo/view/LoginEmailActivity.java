@@ -78,9 +78,9 @@ public class LoginEmailActivity extends AppCompatActivity implements View.OnClic
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             progressDialog.dismiss();
+                            Intent intentHome = new Intent(getApplicationContext(), HomeActivity.class);
+                            startActivity(intentHome);
                             finish();
-                            Intent intentMyProfile = new Intent(getApplicationContext(), MyProfileActivity.class);
-                            startActivity(intentMyProfile);
                         }
                         if (!task.isSuccessful()){
                             progressDialog.dismiss();
@@ -96,6 +96,11 @@ public class LoginEmailActivity extends AppCompatActivity implements View.OnClic
 
 
     @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+    }
+
+    @Override
     public void onClick (View view){
 
         if (view == bt_login){
@@ -104,7 +109,6 @@ public class LoginEmailActivity extends AppCompatActivity implements View.OnClic
 
         if (view == bt_signUp) {
             startActivity(new Intent(this, SignUpActivity.class));
-            finish();
         }
     }
 

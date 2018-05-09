@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.fatecerss.tcc.apprendendo.R;
 import com.fatecerss.tcc.apprendendo.model.User;
+import com.github.reinaldoarrosi.maskededittext.MaskedEditText;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -30,8 +31,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private EditText tf_password;
     private EditText tf_confirm_password;
     private EditText tf_name;
-    private EditText tf_phone;
-    private EditText tf_birthdate;
+    private MaskedEditText tf_phone;
+    private MaskedEditText tf_birthdate;
     private EditText tf_bio;
     private User user;
     private ProgressDialog progressDialog;
@@ -52,8 +53,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         tf_password = (EditText) findViewById(R.id.tf_create_password);
         tf_confirm_password = (EditText) findViewById(R.id.tf_create_confirm_password);
         tf_name = (EditText) findViewById(R.id.tf_create_name);
-        tf_phone = (EditText) findViewById(R.id.tf_create_phone);
-        tf_birthdate = (EditText) findViewById(R.id.tf_birth_date);
+        tf_phone = (MaskedEditText) findViewById(R.id.tf_create_phone);
+        tf_birthdate = (MaskedEditText) findViewById(R.id.tf_birth_date);
         tf_bio = (EditText) findViewById(R.id.tf_create_bio);
 
         usersReference = databaseReference.child("users");
@@ -67,63 +68,71 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 
+    public void signUp () {
+
+        //PEGA A INFORMAÇÃO DAS EDIT TEXT
+        String username = tf_username.getText().toString().trim();
+        String email = tf_email.getText().toString().trim();
+        String password = tf_password.getText().toString().trim();
+        String confirmPassword = tf_confirm_password.getText().toString().trim();
+        String name = tf_name.getText().toString().trim();
+        String phone = tf_phone.getText(true).toString().trim();
+        String birthdate = tf_birthdate.getText().toString().trim();
+        String bio = tf_bio.getText().toString().trim();
+
+        //CRIA UM OBJETO USUARIO PARA COLOCAR NO BANCO DE DADOS
+        user = new User(username, email, password, name, phone, birthdate, bio);
+
+        //VALIDA OS CAMPOS
+        if (TextUtils.isEmpty(username) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(name) || TextUtils.isEmpty(phone) ||
+                TextUtils.isEmpty(birthdate) || TextUtils.isEmpty(bio)) {
+            Toast.makeText(this, this.getString(R.string.signupmissing), Toast.LENGTH_LONG).show();
+        } else if (!password.equals(confirmPassword)) {
+            Toast.makeText(this, this.getString(R.string.signupfailpassword), Toast.LENGTH_LONG).show();
+        }
+
+        //CHAMA O FIREBASE PARA CADASTRAR USUARIO
+        else {
+            progressDialog.setMessage(this.getString(R.string.pg_loggingin));
+            progressDialog.show();
+
+            firebaseAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            progressDialog.dismiss();
+                            if (!task.isSuccessful()) {
+                                FirebaseAuthException e = (FirebaseAuthException) task.getException();
+                                Toast.makeText(SignUpActivity.this, "Failed Registration: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
+                                return;
+                            }
+                            if (task.isSuccessful()) {
+                                firebaseUser = firebaseAuth.getCurrentUser();
+                                usersReference.child(firebaseUser.getUid()).setValue(user);
+                                Intent intentHome = new Intent(getApplicationContext(), HomeActivity.class);
+                                startActivity(intentHome);
+                                finish();
+                            }
+                        }
+                    });
+
+        }
+    }
+
 
     @Override
     public void onClick (View view) {
 
         if (view == bt_signUp) {
-
-            //PEGA A INFORMAÇÃO DAS EDIT TEXT
-            String username = tf_username.getText().toString().trim();
-            String email = tf_email.getText().toString().trim();
-            String password = tf_password.getText().toString().trim();
-            String confirmPassword = tf_confirm_password.getText().toString().trim();
-            String name = tf_name.getText().toString().trim();
-            String phone = tf_phone.getText().toString().trim();
-            String birthdate = tf_birthdate.getText().toString().trim();
-            String bio = tf_bio.getText().toString().trim();
-
-            //CRIA UM OBJETO USUARIO PARA COLOCAR NO BANCO DE DADOS
-            user = new User(username,email,password,name,phone,birthdate,bio);
-
-            //VALIDA OS CAMPOS
-            if (TextUtils.isEmpty(username) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(name) || TextUtils.isEmpty(phone) ||
-                    TextUtils.isEmpty(birthdate) || TextUtils.isEmpty(bio)) {
-                Toast.makeText(this, this.getString(R.string.signupmissing), Toast.LENGTH_LONG).show();
-            }
-            else if(!password.equals(confirmPassword)){
-                Toast.makeText(this, this.getString(R.string.signupfailpassword), Toast.LENGTH_LONG).show();
+                signUp();
             }
 
-            //CHAMA O FIREBASE PARA CADASTRAR USUARIO
-            else{
-                progressDialog.setMessage(this.getString(R.string.pg_loggingin));
-                progressDialog.show();
-
-                firebaseAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                progressDialog.dismiss();
-                                if(!task.isSuccessful()){
-                                    FirebaseAuthException e = (FirebaseAuthException)task.getException();
-                                    Toast.makeText(SignUpActivity.this, "Failed Registration: "+e.getMessage(), Toast.LENGTH_SHORT).show();
-                                    progressDialog.dismiss();
-                                    return;
-                                }
-                                if (task.isSuccessful()) {
-                                        firebaseUser = firebaseAuth.getCurrentUser();
-                                        usersReference.child(firebaseUser.getUid()).setValue(user);
-                                        Intent intentMyProfile = new Intent(getApplicationContext(), MyProfileActivity.class);
-                                        startActivity(intentMyProfile);
-                                        finish();
-                                    }
-                                }
-                        });
-
-                }
-            }
     }
 
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+    }
 
 }

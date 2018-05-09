@@ -25,6 +25,8 @@
     <dimen name="create_bt_leftright">20dp</dimen>
     <dimen name="btCreateShadow">5dp</dimen>
     <dimen name="textViewDrawerSize">11sp</dimen>
+    <dimen name="padding">10dp</dimen>
+    <dimen name="subtitle">20dp</dimen>
 
 
 </resources>

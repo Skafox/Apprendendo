@@ -13,7 +13,7 @@
     <string name="create_password">Password</string>
     <string name="create_confirmpassword">Confirm the password</string>
     <string name="create_name">Name</string>
-    <string name="create_phone">Phone Number</string>
+    <string name="create_phone">Cell Phone Number</string>
     <string name="create_datebirth">Date of Birth</string>
     <string name="create_biography">Biography</string>
     <string name="create_button">SignUp</string>
@@ -27,10 +27,10 @@
     <string name="updateWarning">WARNING!</string>
     <string name="updateMessage">Are you sure you want to update your information?</string>
     <string name="updateSuccess">Values successfully updated.</string>
-
+    <string name="deleteMessage">Are you sure you want to DELETE your ad? This can\'t be undone!</string>
 
     <string name="menuOptionProfile">My Profile</string>
-    <string name="menuOptionCreateAd">Make an Ad!</string>
+    <string name="menuOptionCreateAd">My Ads</string>
     <string name="menuOptionSearchAd">Search an Ad</string>
     <string name="menuOptionInterests">Interests</string>
     <string name="menuOptionNegotiation">My Negotiations</string>
@@ -55,4 +55,45 @@
     <string name="my_profile">My Profile</string>
     <string name="sw_account">Enable/Disable account</string>
     <string name="btUpdate">Update My Profile</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="textViewSpecialty">Specialty:</string>
+    <string name="textViewPeriod">Period:</string>
+
+    <string name="create_ad">Create your Advertisement</string>
+    <string name="my_ad">My advertisement</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="saturday">Saturday</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="sunday">Sunday</string>
+    <string name="select_days">Select the days of classes</string>
+    <string name="select_hour">Select the class period</string>
+    <string name="morning">Morning</string>
+    <string name="afternoon">Afternoon</string>
+    <string name="night">Night</string>
+    <string name="textViewLastModified">Last Modified:</string>
+    <string name="pg_create_ad">Creating Advertisement...</string>
+    <string name="create_ad_success">Advertisement created successfully</string>
+    <string name="update_ad_success">Advertisement created successfully</string>
+    <string name="delete_ad_success">Advertisement created successfully</string>
+    <string name="txt_specialty">Specialty:</string>
+    <string name="bt_create_ad">Create Advertisement</string>
+    <string name="bt_update_ad">Update Info</string>
+    <string name="bt_delete_ad">Delete Ad</string>
+
+    <!--DROPDOWN MENU (COMBOBOX) SPECIALTY-->
+
+    <string name="dropDownItem1">Languages</string>
+    <string name="dropDownItem2">Science</string>
+    <string name="dropDownItem3">Business</string>
+    <string name="dropDownItem4">Health</string>
+    <string name="dropDownItem5">Computing</string>
+    <string name="dropDownItem6">Other</string>
+
 </resources>

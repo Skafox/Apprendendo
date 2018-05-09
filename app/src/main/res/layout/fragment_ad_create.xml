@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_ad"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="@dimen/btCreateShadow"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:title="@string/my_ad"
+        app:titleTextColor="@color/text" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/padding"
+        android:paddingLeft="@dimen/padding"
+        android:paddingRight="@dimen/padding">
+
+        <EditText
+            android:id="@+id/editTextTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:maxLength="50"
+            android:hint="@string/title"
+            android:inputType="textPersonName"
+            android:textColorHint="@color/secondaryText" />
+
+        <EditText
+            android:id="@+id/editTextDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:gravity="top"
+            android:hint="@string/description"
+            android:inputType="textMultiLine"
+            android:textColorHint="@color/secondaryText" />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/layoutBtLoginHeight">
+
+            <TextView
+                android:id="@+id/txt_specialty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_gravity="left"
+                android:layout_row="0"
+                android:text="@string/txt_specialty"
+                android:textSize="@dimen/textViewStart" />
+
+            <Spinner
+                android:id="@+id/spinnerSpecialty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </GridLayout>
+
+        <TextView
+            android:id="@+id/txt_days"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbarSize="@dimen/subtitle"
+            android:text="@string/select_days"
+            android:textColor="@color/primaryText"
+            android:textSize="18sp" />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:rowCount="3">
+
+            <CheckBox
+                android:id="@+id/chk_sunday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:text="@string/sunday"
+                android:textColor="@color/primaryText" />
+
+            <CheckBox
+                android:id="@+id/chk_monday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:text="@string/monday"
+                android:textColor="@color/primaryText" />
+
+            <CheckBox
+                android:id="@+id/chk_tuesday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:text="@string/tuesday"
+                android:textColor="@color/primaryText" />
+
+            <CheckBox
+                android:id="@+id/chk_wednesday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:text="@string/wednesday"
+                android:textColor="@color/primaryText" />
+
+            <CheckBox
+                android:id="@+id/chk_thursday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:text="@string/thursday"
+                android:textColor="@color/primaryText" />
+
+            <CheckBox
+                android:id="@+id/chk_friday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:text="@string/friday"
+                android:textColorHighlight="@color/primaryText" />
+
+            <CheckBox
+                android:id="@+id/chk_saturday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:text="@string/saturday"
+                android:textColor="@color/primaryText" />
+
+        </GridLayout>
+
+        <TextView
+            android:id="@+id/txt_hours"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/select_hour"
+            android:textColor="@color/primaryText"
+            android:textSize="@dimen/subtitle" />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/chk_morning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:text="@string/morning"
+                android:textColor="@color/primaryText" />
+
+            <CheckBox
+                android:id="@+id/chk_afternoon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:text="@string/afternoon"
+                android:textColor="@color/primaryText" />
+
+            <CheckBox
+                android:id="@+id/chk_night"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:text="@string/night"
+                android:textColor="@color/primaryText" />
+
+        </GridLayout>
+
+        <Button
+            android:id="@+id/bt_ad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:text="@string/bt_create_ad"
+            android:textColor="@color/text" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,10 +1,13 @@
 package com.fatecerss.tcc.apprendendo.view;
 
+
 import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -21,7 +24,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class MyProfileActivity extends AppCompatActivity implements View.OnClickListener {
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class MyProfileFragment extends Fragment implements View.OnClickListener {
 
     private Button bt_update;
     private EditText tf_username;
@@ -39,21 +45,28 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
     private AlertDialog.Builder warning;
     private static DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     private static DatabaseReference usersReference;
+    private long backPressedTime = 0;    // used by onBackPressed()
+
+
+    public MyProfileFragment() {
+        // Required empty public constructor
+    }
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_profile);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_my_profile, container, false);
 
-        bt_update = (Button) findViewById(R.id.btUpdate);
-        tf_username = (EditText) findViewById(R.id.tf_username);
-        tf_email = (EditText) findViewById(R.id.tf_email);
-        tf_password = (EditText) findViewById(R.id.tf_password);
-        tf_name = (EditText) findViewById(R.id.tf_name);
-        tf_phone = (EditText) findViewById(R.id.tf_phone);
-        tf_birthdate = (EditText) findViewById(R.id.tf_datebirth);
-        tf_bio = (EditText) findViewById(R.id.tf_bio);
-        sw_active = (Switch) findViewById(R.id.sw_account);
+        bt_update = (Button) view.findViewById(R.id.btUpdate);
+        tf_username = (EditText) view.findViewById(R.id.tf_username);
+        tf_email = (EditText) view.findViewById(R.id.tf_email);
+        tf_password = (EditText) view.findViewById(R.id.tf_password);
+        tf_name = (EditText) view.findViewById(R.id.tf_name);
+        tf_phone = (EditText) view.findViewById(R.id.tf_phone);
+        tf_birthdate = (EditText) view.findViewById(R.id.tf_datebirth);
+        tf_bio = (EditText) view.findViewById(R.id.tf_bio);
+        sw_active = (Switch) view.findViewById(R.id.sw_account);
 
         usersReference = databaseReference.child("users");
 
@@ -79,51 +92,55 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
                 }
             }
         });
+        return view;
+    }
+
+    public void update(){
+
+        //CRIA UMA CAIXA DE DIALOGO COM BOTAO DE SIM E DE CANCELAR
+        warning = new AlertDialog.Builder(getActivity());
+        final String updatedSuccess = this.getString(R.string.updateSuccess);
+
+        warning.setTitle(R.string.updateWarning);
+        warning.setMessage(getString(R.string.updateMessage));
+        warning.setIcon(android.R.drawable.ic_dialog_alert);
+        warning.setCancelable(true);
+        warning.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+
+                //CASO SEJA APERTADO A OPÇÃO SIM, CRIA UM USUARIO NOVO PARA ATUALIZAR, COM OS CAMPOS DA TELA
+                User updateUser =
+
+                        new User (tf_username.getText().toString().trim(),
+                                tf_email.getText().toString().trim(),
+                                tf_password.getText().toString().trim(),
+                                tf_name.getText().toString().trim(),
+                                tf_phone.getText().toString().trim(),
+                                tf_birthdate.getText().toString().trim(),
+                                tf_bio.getText().toString().trim(),
+                                enable_disable);
+
+                //CHAMA O FIREBASE USER PARA ATUALIZAR O EMAIL E O PASSWORD DO USUARIO Q ESTA LOGADO
+                firebaseUser.updateEmail(tf_email.getText().toString().trim());
+                firebaseUser.updatePassword(tf_password.getText().toString().trim());
+
+                //CADASTRA NO BANCO ONDE A CHAVE PRIMARIA == ID DO USUARIO QUE ESTA LOGADO, CADASTRA O NOVO OBJETO COM AS INFORMAÇÕES DA TELA
+                usersReference.child(uId).setValue(updateUser);
+                Toast.makeText(getActivity(), updatedSuccess, Toast.LENGTH_LONG).show();
+            }});
+        warning.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.dismiss();
+            }});
+        warning.show();
 
     }
 
     @Override
     public void onClick(View v) {
         if (v == bt_update) {
-
-            //CRIA UMA CAIXA DE DIALOGO COM BOTAO DE SIM E DE CANCELAR
-            warning = new AlertDialog.Builder(this);
-            final String updatedSuccess = this.getString(R.string.updateSuccess);
-
-            warning.setTitle(R.string.updateWarning);
-            warning.setMessage(getString(R.string.updateMessage));
-            warning.setIcon(android.R.drawable.ic_dialog_alert);
-            warning.setCancelable(true);
-            warning.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
-
-                            //CASO SEJA APERTADO A OPÇÃO SIM, CRIA UM USUARIO NOVO PARA ATUALIZAR, COM OS CAMPOS DA TELA
-                                User updateUser =
-
-                                        new User (tf_username.getText().toString().trim(),
-                                                tf_email.getText().toString().trim(),
-                                                tf_password.getText().toString().trim(),
-                                                tf_name.getText().toString().trim(),
-                                                tf_phone.getText().toString().trim(),
-                                                tf_birthdate.getText().toString().trim(),
-                                                tf_bio.getText().toString().trim(),
-                                                enable_disable);
-
-                            //CHAMA O FIREBASE USER PARA ATUALIZAR O EMAIL E O PASSWORD DO USUARIO Q ESTA LOGADO
-                                firebaseUser.updateEmail(tf_email.getText().toString().trim());
-                                firebaseUser.updatePassword(tf_password.getText().toString().trim());
-
-                            //CADASTRA NO BANCO ONDE A CHAVE PRIMARIA == ID DO USUARIO QUE ESTA LOGADO, CADASTRA O NOVO OBJETO COM AS INFORMAÇÕES DA TELA
-                                usersReference.child(uId).setValue(updateUser);
-                                Toast.makeText(MyProfileActivity.this, updatedSuccess, Toast.LENGTH_LONG).show();
-                        }});
-            warning.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                  dialog.dismiss();
-                }});
-            warning.show();
+            update();
         }
-
     }
 
     public void readUserInDatabase(String uId){

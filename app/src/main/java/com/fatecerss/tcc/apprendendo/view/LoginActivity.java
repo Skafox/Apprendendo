@@ -47,32 +47,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if (view == bt_login){
             startActivity(new Intent(this, LoginEmailActivity.class));
-            finish();
         }
 
         if (view == tf_signUp) {
             startActivity(new Intent(this, SignUpActivity.class));
-            finish();
         }
     }
 
+    @Override
+    public void onBackPressed(){
+        finish();
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-    /* sombra no texto layout
-            android:shadowDx="2"
-            android:shadowDy="4"
-            android:shadowRadius="4"
-            android:shadowColor="@color/colorStartLabel"
-    */
 }
