@@ -3,6 +3,8 @@ package com.fatecerss.tcc.apprendendo.view;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +13,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -75,7 +78,6 @@ public class AdListFragment extends Fragment {
         adapter = new AdArrayAdapter(getActivity(), ads);
         listView.setAdapter(adapter);
 
-
         //Recuperar anúncios do Firebase
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -95,7 +97,6 @@ public class AdListFragment extends Fragment {
                 }
                 //notifica o adapter que a lista foi mudada
                 adapter.notifyDataSetChanged();
-
             }
 
             @Override
@@ -117,13 +118,10 @@ public class AdListFragment extends Fragment {
                 Fragment fragment = new AdEditFragment();
                 fragment.setArguments(args);
 
-
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.addToBackStack("AdListFragment");
                 fragmentTransaction.replace(R.id.layoutContentHome, fragment);
                 fragmentTransaction.commit();
-
-
-
             }
         });
 
@@ -133,6 +131,7 @@ public class AdListFragment extends Fragment {
                 FragmentManager fragmentManager = getFragmentManager();
                 Fragment fragment = new AdCreateFragment();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.addToBackStack("AdListFragment");
                 fragmentTransaction.replace(R.id.layoutContentHome, fragment);
                 fragmentTransaction.commit();
             }
@@ -144,7 +143,8 @@ public class AdListFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
-
+        final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
     }
 
 }

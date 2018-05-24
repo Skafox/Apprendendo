@@ -74,9 +74,11 @@ public class AdEditFragment extends Fragment implements View.OnClickListener{
     private String adId;
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     private Query adsReference = databaseReference.child("advertisements");
+    private Query usersReference = databaseReference.child("users");
     private Advertisement advertisement;
     private ProgressDialog progressDialog;
     private AlertDialog.Builder warning;
+    private ValueEventListener valueEventListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -104,6 +106,7 @@ public class AdEditFragment extends Fragment implements View.OnClickListener{
         spinnerSpecialty = (Spinner) view.findViewById(R.id.spinnerSpecialty);
 
         adsReference = databaseReference.child("advertisements");
+        usersReference = databaseReference.child("users");
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         if (firebaseUser != null) {
@@ -129,11 +132,9 @@ public class AdEditFragment extends Fragment implements View.OnClickListener{
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Object item = parent.getItemAtPosition(position);
                 if (item != null) {
-                    Toast.makeText(getActivity(), item.toString(),
-                            Toast.LENGTH_SHORT).show();
+
                 }
                 specialty = item.toString();
-
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -152,10 +153,16 @@ public class AdEditFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         if(v == bt_updateAd){
+            progressDialog = new ProgressDialog(getActivity());
+            String pg_update = getActivity().getString(R.string.pg_create_ad);
+            progressDialog.setMessage(pg_update);
+            progressDialog.show();
             updateAd();
+            progressDialog.dismiss();
         }
         if(v == bt_deleteAd){
             deleteAd();
+
         }
     }
 
@@ -205,13 +212,21 @@ public class AdEditFragment extends Fragment implements View.OnClickListener{
                     Toast.makeText(getActivity(), getActivity().getString(R.string.signupmissing), Toast.LENGTH_LONG).show();
                 }
                 else{
-                    progressDialog = ProgressDialog.show(getActivity(), "", getActivity().getString(R.string.pg_create_ad));
                     //CHAMA O FIREBASE DATABASE PARA CADASTRAR ANUNCIO
                     //ATUALIZA NO BANCO
                     advertisement.setAdId(adId);
                     databaseReference.child("advertisements").child(adId).setValue(advertisement);
                     progressDialog.dismiss();
                     Toast.makeText(getActivity(), getActivity().getString(R.string.update_ad_success), Toast.LENGTH_LONG).show();
+                    FragmentManager fragmentManager = getFragmentManager();
+                    Fragment fragment = null;
+                    fragment = new AdListFragment();
+                    if (fragment != null) {
+                        adsReference.removeEventListener(valueEventListener);
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.layoutContentHome, fragment);
+                        fragmentTransaction.commit();
+                    }
                 }
             }});
         warning.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
@@ -234,13 +249,15 @@ public class AdEditFragment extends Fragment implements View.OnClickListener{
         warning.setCancelable(true);
         warning.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                    databaseReference.child("advertisements").child(adId).removeValue();
-
+                adsReference.removeEventListener(valueEventListener);
+                databaseReference.child("advertisements").child(adId).removeValue();
                 FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.popBackStack();
+                /*Fragment fragment = null;
                 Fragment fragment = new AdListFragment();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.layoutContentHome, fragment);
-                fragmentTransaction.commitAllowingStateLoss();
+                fragmentTransaction.commitAllowingStateLoss();*/
                 //Volta para a lista
             }});
         warning.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
@@ -255,9 +272,9 @@ public class AdEditFragment extends Fragment implements View.OnClickListener{
 
         //RECEBE O ID DO ANUNCIO QUE FOI CLICADO COMO PARÂMETRO
         adsReference = databaseReference.child("advertisements").child(adId);
-        adsReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+                valueEventListener = new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
 
                 if (dataSnapshot != null) {
 
@@ -282,6 +299,7 @@ public class AdEditFragment extends Fragment implements View.OnClickListener{
                     String specialtyExpected4 = getActivity().getString(R.string.dropDownItem4);
                     String specialtyExpected5 = getActivity().getString(R.string.dropDownItem5);
                     String specialtyExpected6 = getActivity().getString(R.string.dropDownItem6);
+                    String specialtyExpected7 = getActivity().getString(R.string.dropDownItem7);
                     if (specialtyResult.equals(specialtyExpected1)) {
                         spinnerSpecialty.setSelection(0);
                     } else if (specialtyResult.equals(specialtyExpected2)) {
@@ -294,6 +312,8 @@ public class AdEditFragment extends Fragment implements View.OnClickListener{
                         spinnerSpecialty.setSelection(4);
                     } else if (specialtyResult.equals(specialtyExpected6)) {
                         spinnerSpecialty.setSelection(5);
+                    } else if (specialtyResult.equals(specialtyExpected7)) {
+                        spinnerSpecialty.setSelection(6);
                     }
                 } else {
                     FragmentManager fragmentManager = getFragmentManager();
@@ -306,7 +326,19 @@ public class AdEditFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
-        });
+        };
+        adsReference.addValueEventListener(valueEventListener);
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        adsReference.removeEventListener(valueEventListener);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        adsReference.addValueEventListener(valueEventListener);
+    }
 }

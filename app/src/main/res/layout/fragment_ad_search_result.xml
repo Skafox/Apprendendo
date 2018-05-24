@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:windowSoftInputMode="adjustPan">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_ad"
@@ -13,12 +14,13 @@
         android:background="?attr/colorPrimary"
         android:elevation="@dimen/btCreateShadow"
         app:popupTheme="@style/AppTheme.PopupOverlay"
-        app:title="@string/create_ad"
+        app:title="@string/app_name"
         app:titleTextColor="@color/text" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:clickable="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,28 +28,31 @@
             android:orientation="vertical"
             android:paddingBottom="@dimen/padding"
             android:paddingLeft="@dimen/padding"
-            android:paddingRight="@dimen/padding">
+            android:paddingRight="@dimen/padding"
+            android:clickable="true">
 
-            <EditText
-                android:id="@+id/editTextTitle"
+            <TextView
+                android:id="@+id/textViewTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/title"
-                android:inputType="textPersonName"
                 android:maxLength="50"
-                android:textColorHint="@color/secondaryText" />
+                android:text="Title"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/textViewStart"
+                android:padding="@dimen/padding"/>
 
             <EditText
                 android:id="@+id/editTextDescription"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/marginRelativeLayoutLogin"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:gravity="top"
                 android:hint="@string/description"
                 android:inputType="textMultiLine"
-                android:textColorHint="@color/secondaryText" />
+                android:textColorHint="@color/colorPrimary" />
 
             <GridLayout
                 android:layout_width="match_parent"
@@ -61,12 +66,21 @@
                     android:layout_gravity="left"
                     android:layout_row="0"
                     android:text="@string/txt_specialty"
-                    android:textSize="@dimen/textViewStart" />
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp" />
 
-                <Spinner
-                    android:id="@+id/spinnerSpecialty"
+                <TextView
+                    android:id="@+id/textViewSpecialtySelected"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:layout_gravity="right"
+                    android:layout_row="0"
+                    android:text="especialidade"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp"
+                    android:paddingTop="@dimen/padding"/>
+
             </GridLayout>
 
             <TextView
@@ -74,8 +88,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbarSize="@dimen/subtitle"
-                android:text="@string/select_days"
-                android:textColor="@color/primaryText"
+                android:text="@string/textViewDaysAvailable"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="18sp" />
 
             <GridLayout
@@ -146,9 +160,9 @@
                 android:id="@+id/txt_hours"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/select_hour"
-                android:textColor="@color/primaryText"
-                android:textSize="@dimen/subtitle" />
+                android:text="@string/textViewPeriodAvailable"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp" />
 
             <GridLayout
                 android:layout_width="match_parent"
@@ -180,16 +194,70 @@
 
             </GridLayout>
 
-            <Button
-                android:id="@+id/bt_ad"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="150"
+                android:gravity="bottom|center"
+                android:orientation="horizontal"
+                android:padding="@dimen/padding">
+
+                <TextView
+                    android:id="@+id/textViewAdOwner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="Ad Owner: "
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textViewAdOwnerLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="userlink"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18sp" />
+
+            </RelativeLayout>
+
+            <ImageButton
+                android:id="@+id/imageViewSendInterest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="false"
+                android:layout_alignParentTop="true"
+                android:layout_gravity="center_vertical|center|clip_vertical"
+                android:layout_marginTop="20dp"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:clickable="true"
+                android:cropToPadding="false"
+                android:maxHeight="@dimen/interestButtonMaxHeight"
+                android:scaleType="fitCenter"
+                android:tint="@color/colorAccent"
+                app:srcCompat="@drawable/ic_send_interest" />
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
-                android:elevation="@dimen/btCreateShadow"
-                android:orientation="horizontal"
-                android:padding="@dimen/padding"
-                android:text="@string/bt_create_ad"
-                android:textColor="@color/text" />
+                android:gravity="bottom|center"
+                android:orientation="vertical"
+                android:padding="@dimen/padding">
+
+                <TextView
+                    android:id="@+id/textViewSignUp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:padding="@dimen/padding"
+                    android:text="@string/textViewSendInterest"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
 
         </LinearLayout>
     </ScrollView>

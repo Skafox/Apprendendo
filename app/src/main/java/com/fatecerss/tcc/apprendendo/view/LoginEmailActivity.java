@@ -38,7 +38,9 @@ public class LoginEmailActivity extends AppCompatActivity implements View.OnClic
         bt_signUp = (Button) findViewById(R.id.btSignUp);
         bt_login = (Button) findViewById(R.id.btLogin);
         tf_email = (EditText) findViewById(R.id.editTextEmail);
+        tf_email.setSelected(false);
         tf_password = (EditText) findViewById(R.id.editTextPassword);
+        tf_password.setSelected(false);
         //instancia a caixa de progresso
         progressDialog = new ProgressDialog(this);
         //inicializa o objeto que referencia o firebase auth na aplicação

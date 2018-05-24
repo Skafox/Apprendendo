@@ -1,16 +1,24 @@
 package com.fatecerss.tcc.apprendendo.view;
 
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -23,6 +31,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,6 +59,10 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
     private static DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     private static DatabaseReference usersReference;
     private long backPressedTime = 0;    // used by onBackPressed()
+    private ImageView imageViewProfilePicture;
+    private static final int REQUISICAO_CAMERA = 1;
+    public Bitmap profileBitmap;
+    Map<String, Bitmap> pictures = new HashMap<String, Bitmap>();
 
 
     public MyProfileFragment() {
@@ -67,6 +84,7 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
         tf_birthdate = (EditText) view.findViewById(R.id.tf_datebirth);
         tf_bio = (EditText) view.findViewById(R.id.tf_bio);
         sw_active = (Switch) view.findViewById(R.id.sw_account);
+        imageViewProfilePicture = (ImageView) view.findViewById(R.id.imageViewProfilePicture);
 
         usersReference = databaseReference.child("users");
 
@@ -92,7 +110,13 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
                 }
             }
         });
+
+        imageViewProfilePicture.setOnClickListener(this);
+
         return view;
+
+
+
     }
 
     public void update(){
@@ -141,6 +165,20 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
         if (v == bt_update) {
             update();
         }
+        if (v == imageViewProfilePicture){
+            if (ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
+            {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+                        android.Manifest.permission.CAMERA)){
+                    Toast.makeText(getActivity(), "@string/needcamera", Toast.LENGTH_SHORT).show();
+                }
+                ActivityCompat.requestPermissions(getActivity(), new String [] {
+                        android.Manifest.permission.CAMERA}, REQUISICAO_CAMERA);
+            }
+            else{
+                dispatchTakePictureIntent();
+            }
+        }
     }
 
     public void readUserInDatabase(String uId){
@@ -170,5 +208,35 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
             }
         });
     }
+
+    public void dispatchTakePictureIntent(){
+        Intent takePictureIntent = new
+                Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUISICAO_CAMERA);
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUISICAO_CAMERA && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            imageViewProfilePicture.setImageBitmap(imageBitmap);
+            setCatPicture(imageBitmap);
+        }
+    }
+
+    public void setCatPicture(Bitmap profileBitmap){
+        this.profileBitmap = profileBitmap;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+    }
+
 
 }

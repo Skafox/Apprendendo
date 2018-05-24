@@ -1,12 +1,16 @@
 package com.fatecerss.tcc.apprendendo.view;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -26,6 +30,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import static android.content.Context.INPUT_METHOD_SERVICE;
 
 /**
  * Created by Sandro on 08/05/2018.
@@ -58,7 +64,6 @@ public class AdCreateFragment extends Fragment implements View.OnClickListener {
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference adsReference;
     private Advertisement advertisement;
-    private ProgressDialog progressDialog;
 
     //Método 1
     @Override
@@ -82,11 +87,11 @@ public class AdCreateFragment extends Fragment implements View.OnClickListener {
         bt_ad = (Button) view.findViewById(R.id.bt_ad);
         spinnerSpecialty = (Spinner) view.findViewById(R.id.spinnerSpecialty);
 
-
         //SETA O COMBOBOX
         String[] items = new String[]{getActivity().getString(R.string.dropDownItem1),getActivity().getString(R.string.dropDownItem2),
                 getActivity().getString(R.string.dropDownItem3),getActivity().getString(R.string.dropDownItem4),
-                getActivity().getString(R.string.dropDownItem5),getActivity().getString(R.string.dropDownItem6)};
+                getActivity().getString(R.string.dropDownItem5),getActivity().getString(R.string.dropDownItem6),
+                getActivity().getString(R.string.dropDownItem7)};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, items);
 
@@ -97,11 +102,9 @@ public class AdCreateFragment extends Fragment implements View.OnClickListener {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Object item = parent.getItemAtPosition(position);
                 if (item != null) {
-                    Toast.makeText(getActivity(), item.toString(),
-                            Toast.LENGTH_SHORT).show();
+
                 }
                 specialty = item.toString();
-
             }
 
             @Override
@@ -128,8 +131,6 @@ public class AdCreateFragment extends Fragment implements View.OnClickListener {
 
     //Método 2
     public void createAd() {
-
-
 
         //PEGA A INFORMAÇÃO DAS EDIT TEXT
         String title = editTextTitle.getText().toString().trim();
@@ -164,14 +165,12 @@ public class AdCreateFragment extends Fragment implements View.OnClickListener {
         //CHAMA O FIREBASE PARA CADASTRAR ANUNCIO
         else {
 
-            progressDialog = ProgressDialog.show(getActivity(), "", getActivity().getString(R.string.pg_create_ad));
             //CHAMA O FIREBASE DATABASE PARA CADASTRAR ANUNCIO
             //CADASTRA NO BANCO
             key = database.getReference("advertisements").push().getKey();
             advertisement.setAdId(key);
             adsReference.child(key).setValue(advertisement);
-            progressDialog.dismiss();
-            Toast.makeText(getActivity(), getActivity().getString(R.string.create_ad_success), Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(),   getActivity().getString(R.string.create_ad_success), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -180,8 +179,23 @@ public class AdCreateFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
             if(v == bt_ad){
                 createAd();
+                FragmentManager fragmentManager = getFragmentManager();
+                Fragment fragment = null;
+                fragmentManager.popBackStack();
+                /*fragment = new AdListFragment();
+                if (fragment != null) {
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.layoutContentHome, fragment);
+                    fragmentTransaction.commit();
+                }*/
             }
     }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+    }
 
 }

@@ -3,25 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.fatecerss.tcc.apprendendo.view.AdListFragment">
+    tools:context="com.fatecerss.tcc.apprendendo.view.AdSearchFragment">
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_add_Ad"
+        android:id="@+id/fab_search_Ad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/create_bt_bottom"
         android:layout_weight="1"
         android:clickable="true"
-        android:tint="@android:color/black"
-        app:backgroundTint="@color/colorAccent"
+        android:tint="@color/colorAccent"
+        app:backgroundTint="@color/colorPrimary"
         app:elevation="0dp"
         app:fabSize="normal"
-        app:rippleColor="@color/colorPrimary"
-        app:srcCompat="@drawable/ic_add" />
+        app:rippleColor="@color/colorAccent"
+        app:srcCompat="?android:attr/actionModeWebSearchDrawable" />
 
     <ListView
-        android:id="@+id/listAdvertise"
+        android:id="@+id/listSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|top"

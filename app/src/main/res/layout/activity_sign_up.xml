@@ -5,146 +5,158 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/tb_create"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_weight="1"
-            android:background="?attr/colorPrimary"
-            android:elevation="@dimen/btCreateShadow"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="@string/create_title"
-            app:titleTextColor="@color/text" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:padding="20dp"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:weightSum="1">
-
-        <EditText
-            android:id="@+id/tf_create_username"
-            android:maxLength="25"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/create_username"
-            android:inputType="textPersonName"
-            android:textColor="@color/primaryText"
-            android:textColorHint="@color/secondaryText" />
-
-        <EditText
-            android:id="@+id/tf_create_email"
-            android:maxLength="35"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/create_email"
-            android:inputType="textEmailAddress"
-            android:textColor="@color/primaryText"
-            android:textColorHint="@color/secondaryText" />
-
-        <EditText
-            android:id="@+id/tf_create_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/create_password"
-            android:inputType="textPassword"
-            android:textColor="@color/primaryText"
-            android:textColorHint="@color/secondaryText" />
-
-        <EditText
-            android:id="@+id/tf_create_confirm_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/create_confirmpassword"
-            android:inputType="textPassword"
-            android:textColor="@color/primaryText"
-            android:textColorHint="@color/secondaryText" />
-
-        <EditText
-            android:id="@+id/tf_create_name"
-            android:maxLength="55"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/create_name"
-            android:inputType="textPersonName"
-            android:textColor="@color/primaryText"
-            android:textColorHint="@color/secondaryText" />
-
-        <com.github.reinaldoarrosi.maskededittext.MaskedEditText
-            android:id="@+id/tf_create_phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/create_phone"
-            android:inputType="phone"
-            app:mask="(99) 99999-9999"
-            android:textColor="@color/primaryText"
-            android:textColorHint="@color/secondaryText" />
-
-        <com.github.reinaldoarrosi.maskededittext.MaskedEditText
-            android:id="@+id/tf_birth_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/create_datebirth"
-            android:inputType="date"
-            app:mask="99/99/9999"
-            android:textColor="@color/primaryText"
-            android:textColorHint="@color/secondaryText" />
-
-        <EditText
-            android:id="@+id/tf_create_bio"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_weight="0.26"
-            android:ems="10"
-            android:gravity="top"
-            android:hint="@string/create_biography"
-            android:inputType="textMultiLine"
-            android:maxLength="140"
-            android:textColor="@color/primaryText"
-            android:textColorHint="@color/secondaryText" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </RelativeLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="5"
-        android:orientation="horizontal">
+        android:layout_weight="1">
 
-        <Button
-            android:id="@+id/bt_create"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="@dimen/create_bt_bottom"
-            android:layout_marginLeft="@dimen/create_bt_leftright"
-            android:layout_marginRight="@dimen/create_bt_leftright"
-            android:background="@color/colorAccent"
-            android:elevation="@dimen/btCreateShadow"
-            android:text="@string/create_button"
-            android:textColor="@color/text" />
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/tb_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_weight="1"
+                    android:background="?attr/colorPrimary"
+                    android:elevation="@dimen/btCreateShadow"
+                    app:popupTheme="@style/AppTheme.PopupOverlay"
+                    app:title="@string/create_title"
+                    app:titleTextColor="@color/text" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                android:padding="@dimen/padding"
+                android:weightSum="1">
+
+                <EditText
+                    android:id="@+id/tf_create_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/create_username"
+                    android:inputType="textPersonName"
+                    android:maxLength="25"
+                    android:textColor="@color/primaryText"
+                    android:textColorHint="@color/secondaryText" />
+
+                <EditText
+                    android:id="@+id/tf_create_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/create_email"
+                    android:inputType="textEmailAddress"
+                    android:maxLength="35"
+                    android:textColor="@color/primaryText"
+                    android:textColorHint="@color/secondaryText" />
+
+                <EditText
+                    android:id="@+id/tf_create_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/create_password"
+                    android:inputType="textPassword"
+                    android:textColor="@color/primaryText"
+                    android:textColorHint="@color/secondaryText" />
+
+                <EditText
+                    android:id="@+id/tf_create_confirm_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/create_confirmpassword"
+                    android:inputType="textPassword"
+                    android:textColor="@color/primaryText"
+                    android:textColorHint="@color/secondaryText" />
+
+                <EditText
+                    android:id="@+id/tf_create_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/create_name"
+                    android:inputType="textPersonName"
+                    android:maxLength="55"
+                    android:textColor="@color/primaryText"
+                    android:textColorHint="@color/secondaryText" />
+
+                <com.github.reinaldoarrosi.maskededittext.MaskedEditText
+                    android:id="@+id/tf_create_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/create_phone"
+                    android:inputType="phone"
+                    android:textColor="@color/primaryText"
+                    android:textColorHint="@color/secondaryText"
+                    app:mask="(99) 99999-9999" />
+
+                <com.github.reinaldoarrosi.maskededittext.MaskedEditText
+                    android:id="@+id/tf_birth_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/create_datebirth"
+                    android:inputType="date"
+                    android:textColor="@color/primaryText"
+                    android:textColorHint="@color/secondaryText"
+                    app:mask="99/99/9999" />
+
+                <EditText
+                    android:id="@+id/tf_create_bio"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_weight="0.26"
+                    android:ems="10"
+                    android:gravity="top"
+                    android:hint="@string/create_biography"
+                    android:inputType="textMultiLine"
+                    android:maxLength="140"
+                    android:textColor="@color/primaryText"
+                    android:textColorHint="@color/secondaryText" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/bt_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/create_bt_bottom"
+                    android:layout_marginLeft="@dimen/create_bt_leftright"
+                    android:layout_marginRight="@dimen/create_bt_leftright"
+                    android:background="@color/colorAccent"
+                    android:elevation="@dimen/btCreateShadow"
+                    android:text="@string/create_button"
+                    android:textColor="@color/text" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

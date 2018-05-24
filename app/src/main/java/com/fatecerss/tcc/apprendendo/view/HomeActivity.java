@@ -2,6 +2,7 @@ package com.fatecerss.tcc.apprendendo.view;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -57,6 +58,15 @@ public class HomeActivity extends AppCompatActivity
     public void onPostCreate(Bundle savedInstanceState){
         super.onPostCreate(savedInstanceState);
         toggle.syncState();
+        //setar uma tela inicial
+        FragmentManager fragmentManager = getFragmentManager();
+        Fragment fragment = null;
+        fragment = new MyProfileFragment();
+        if (fragment != null) {
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.layoutContentHome, fragment);
+            fragmentTransaction.commit();
+        }
     }
 
     @Override
@@ -65,13 +75,17 @@ public class HomeActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            long t = System.currentTimeMillis();
-            if (t - backPressedTime > 2000) {
-                backPressedTime = t;
-                Toast.makeText(this, "Press back again to logout",
-                        Toast.LENGTH_SHORT).show();
+            if (getFragmentManager().getBackStackEntryCount() > 0 ){
+                getFragmentManager().popBackStack();
             } else {
-                finish();
+                long t = System.currentTimeMillis();
+                if (t - backPressedTime > 2000) {
+                    backPressedTime = t;
+                    Toast.makeText(this, "Press back again to logout",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    finish();
+                }
             }
         }
     }
@@ -106,12 +120,15 @@ public class HomeActivity extends AppCompatActivity
         switch(id){
             case R.id.nav_profile:
                 fragment = new MyProfileFragment();
+                getSupportActionBar().setTitle(R.string.my_profile);
                 break;
             case R.id.nav_createAd:
                 fragment = new AdListFragment();
+                getSupportActionBar().setTitle(R.string.my_ads);
                 break;
             case R.id.nav_searchAd:
-
+                fragment = new AdSearchFragment();
+                getSupportActionBar().setTitle(R.string.search_ads);
                 break;
             case R.id.nav_interests:
 
@@ -160,5 +177,6 @@ public class HomeActivity extends AppCompatActivity
             imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         }
     }
+
 
 }
