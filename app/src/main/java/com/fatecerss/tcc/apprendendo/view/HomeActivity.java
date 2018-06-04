@@ -119,19 +119,24 @@ public class HomeActivity extends AppCompatActivity
 
         switch(id){
             case R.id.nav_profile:
+                fragment = null;
                 fragment = new MyProfileFragment();
                 getSupportActionBar().setTitle(R.string.my_profile);
                 break;
             case R.id.nav_createAd:
+                fragment = null;
                 fragment = new AdListFragment();
                 getSupportActionBar().setTitle(R.string.my_ads);
                 break;
             case R.id.nav_searchAd:
+                fragment = null;
                 fragment = new AdSearchFragment();
                 getSupportActionBar().setTitle(R.string.search_ads);
                 break;
             case R.id.nav_interests:
-
+                fragment = null;
+                fragment = new InterestListFragment();
+                getSupportActionBar().setTitle(R.string.my_interests);
                 break;
             case R.id.nav_negotiation:
 
@@ -141,6 +146,9 @@ public class HomeActivity extends AppCompatActivity
                 break;
             case R.id.nav_schedule:
 
+                break;
+            case R.id.nav_logout:
+                finish();
                 break;
         }
 

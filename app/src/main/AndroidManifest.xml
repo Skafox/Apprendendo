@@ -24,10 +24,13 @@
         <activity
             android:name=".view.HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden"/>
         <activity
-            android:name=".view.LoginEmailActivity">
+            android:name=".view.LoginEmailActivity"
+            android:windowSoftInputMode="stateHidden">
         </activity>
     </application>
+
 
 </manifest>

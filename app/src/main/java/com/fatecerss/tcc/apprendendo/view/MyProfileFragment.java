@@ -77,6 +77,7 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
 
         bt_update = (Button) view.findViewById(R.id.btUpdate);
         tf_username = (EditText) view.findViewById(R.id.tf_username);
+        tf_username.setEnabled(false);
         tf_email = (EditText) view.findViewById(R.id.tf_email);
         tf_password = (EditText) view.findViewById(R.id.tf_password);
         tf_name = (EditText) view.findViewById(R.id.tf_name);
@@ -190,7 +191,6 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener 
             public void onDataChange(DataSnapshot dataSnapshot) {
                 tf_username.setText(dataSnapshot.child("username").getValue(String.class));
                 tf_email.setText(dataSnapshot.child("email").getValue(String.class));
-                tf_username.setEnabled(false);
                 tf_password.setText(dataSnapshot.child("password").getValue(String.class));
                 tf_name.setText(dataSnapshot.child("name").getValue(String.class));
                 tf_phone.setText(dataSnapshot.child("phone").getValue(String.class));

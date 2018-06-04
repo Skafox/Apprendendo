@@ -30,6 +30,7 @@
     <string name="updateSuccess">Values successfully updated.</string>
     <string name="deleteMessage">Are you sure you want to DELETE your ad? This can\'t be undone!</string>
     <string name="sendInterestMessage">Do you want to send an interest for this ad?</string>
+    <string name="create_interest_same_owner">You cannot send an interest for yourself.</string>
 
     <string name="menuOptionProfile">My Profile</string>
     <string name="menuOptionCreateAd">My Ads</string>
@@ -55,6 +56,7 @@
     <string name="my_profile">My Profile</string>
     <string name="my_ads">My Advertisements</string>
     <string name="search_ads">Search an Advertisement</string>
+    <string name="my_interests">My Interests</string>
     <string name="sw_account">Enable/Disable account</string>
     <string name="btUpdate">Update My Profile</string>
 
@@ -105,5 +107,8 @@
     <string name="textViewDaysAvailable">Days available for classes:</string>
     <string name="textViewPeriodAvailable">Periods of the day available:</string>
     <string name="textViewSendInterest">Click in the icon above to notify the advertisement owner that you are interested in this ad!</string>
+    <string name="textViewUserName">User:</string>
+    <string name="textViewNegotiate">Click the button to send a message to the interested negotiating about your ad</string>
+    <string name="btNegotiate">Start a Negotiation</string>
 
 </resources>

@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.fatecerss.tcc.apprendendo.view.MyProfileFragment">
+    tools:context="com.fatecerss.tcc.apprendendo.view.MyProfileFragment"
+    android:focusableInTouchMode="true">
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -23,15 +24,6 @@
                 android:orientation="vertical"
                 android:padding="@dimen/padding">
 
-                <ImageView
-                    android:id="@+id/imageViewProfilePicture"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:adjustViewBounds="false"
-                    app:srcCompat="@drawable/ic_menu_camera" />
-
                 <EditText
                     android:id="@+id/tf_username"
                     android:layout_width="match_parent"
@@ -41,6 +33,24 @@
                     android:hint="@string/create_username"
                     android:inputType="textPersonName"
                     android:textColor="@color/primaryText" />
+
+                <ImageView
+                    android:id="@+id/imageViewProfilePicture"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="false"
+                    app:srcCompat="@drawable/ic_menu_camera" />
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_weight="1"
+                    android:numStars="5"
+                    android:stepSize=".5"/>
 
                 <EditText
                     android:id="@+id/tf_email"

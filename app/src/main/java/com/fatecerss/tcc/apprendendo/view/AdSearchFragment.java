@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +13,7 @@ import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -216,6 +218,7 @@ public class AdSearchFragment extends Fragment {
                                                 advertisement.isSaturday() && searchStatement.contains("Abend")){
                                             ads.add(advertisement);
                                         }
+
                                     }
                                     //notifica o adapter que a lista foi mudada
                                     adapter.notifyDataSetChanged();
@@ -225,6 +228,9 @@ public class AdSearchFragment extends Fragment {
                                 }
                             };
                             adsReference.addValueEventListener(valueEventListenerAds);
+
+                            final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                            imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
                         }
                     }
                 });

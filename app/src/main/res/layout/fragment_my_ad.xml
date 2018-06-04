@@ -27,7 +27,8 @@
             android:orientation="vertical"
             android:paddingBottom="@dimen/padding"
             android:paddingLeft="@dimen/padding"
-            android:paddingRight="@dimen/padding">
+            android:paddingRight="@dimen/padding"
+            android:focusableInTouchMode="true">
 
             <EditText
                 android:id="@+id/editTextTitle"

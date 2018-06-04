@@ -6,19 +6,14 @@ import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.graphics.Paint;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.GridLayout;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,29 +30,23 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import static android.R.attr.value;
-import static com.fatecerss.tcc.apprendendo.R.id.bt_ad;
-import static com.fatecerss.tcc.apprendendo.R.id.editTextTitle;
-import static com.fatecerss.tcc.apprendendo.R.id.imageViewSendInterest;
-import static com.fatecerss.tcc.apprendendo.R.id.spinnerSpecialty;
-
 /**
  * Created by Sandro on 21/05/2018.
  */
 
-public class AdResultFragment extends Fragment implements View.OnClickListener{
+public class AdResultInterestFragment extends Fragment implements View.OnClickListener{
 
     private TextView textViewTitle;
     private EditText editTextDescription;
     private TextView textViewSpecialtySelected;
     private TextView textViewAdOwnerLink;
+    private TextView textViewAdOwner;
+    private TextView textViewSignUp;
     private CheckBox chk_sunday;
     private CheckBox chk_monday;
     private CheckBox chk_tuesday;
@@ -111,7 +100,12 @@ public class AdResultFragment extends Fragment implements View.OnClickListener{
         chk_night = (CheckBox) view.findViewById(R.id.chk_night);
         imageViewSendInterest = (ImageButton) view.findViewById(R.id.imageViewSendInterest);
         textViewAdOwnerLink = (TextView) view.findViewById(R.id.textViewAdOwnerLink);
-        imageViewSendInterest = (ImageButton) view.findViewById(R.id.imageViewSendInterest);
+        textViewAdOwner = (TextView) view.findViewById(R.id.textViewAdOwner);
+        textViewSignUp = (TextView) view.findViewById(R.id.textViewSignUp);
+        textViewAdOwnerLink.setVisibility(View.GONE);
+        textViewAdOwner.setVisibility(View.GONE);
+        textViewSignUp.setVisibility(View.GONE);
+        imageViewSendInterest.setVisibility(View.GONE);
 
         adsReference = databaseReference.child("advertisements");
         usersReference = databaseReference.child("users");
@@ -165,6 +159,7 @@ public class AdResultFragment extends Fragment implements View.OnClickListener{
             if (uId.equalsIgnoreCase(adOwnerId)){
                 FragmentManager fragmentManager = getFragmentManager();
                 Fragment fragment = new MyProfileFragment();
+
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.addToBackStack("UserFragment");
                 fragmentTransaction.replace(R.id.layoutContentHome, fragment);
@@ -259,7 +254,6 @@ public class AdResultFragment extends Fragment implements View.OnClickListener{
                     String specialtyExpected4 = getActivity().getString(R.string.dropDownItem4);
                     String specialtyExpected5 = getActivity().getString(R.string.dropDownItem5);
                     String specialtyExpected6 = getActivity().getString(R.string.dropDownItem6);
-                    String specialtyExpected7 = getActivity().getString(R.string.dropDownItem7);
                     if (specialtyResult.equals(specialtyExpected1)) {
                         textViewSpecialtySelected.setText(getActivity().getString(R.string.dropDownItem1));
                     } else if (specialtyResult.equals(specialtyExpected2)) {
@@ -272,7 +266,7 @@ public class AdResultFragment extends Fragment implements View.OnClickListener{
                         textViewSpecialtySelected.setText(getActivity().getString(R.string.dropDownItem5));
                     } else if (specialtyResult.equals(specialtyExpected6)) {
                         textViewSpecialtySelected.setText(getActivity().getString(R.string.dropDownItem6));
-                    } else if (specialtyResult.equals(specialtyExpected7)) {
+                    } else if (specialtyResult.equals(specialtyExpected6)) {
                         textViewSpecialtySelected.setText(getActivity().getString(R.string.dropDownItem7));
                     }
                     adOwnerId = advertisement.getuId();
