@@ -128,7 +128,8 @@ public class AdEditFragment extends Fragment implements View.OnClickListener{
         //SETA O COMBOBOX
         String[] items = new String[]{getActivity().getString(R.string.dropDownItem1),getActivity().getString(R.string.dropDownItem2),
                 getActivity().getString(R.string.dropDownItem3),getActivity().getString(R.string.dropDownItem4),
-                getActivity().getString(R.string.dropDownItem5),getActivity().getString(R.string.dropDownItem6)};
+                getActivity().getString(R.string.dropDownItem5),getActivity().getString(R.string.dropDownItem6),
+                getActivity().getString(R.string.dropDownItem7)};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, items);
         spinnerSpecialty.setAdapter(adapter);
