@@ -15,6 +15,8 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
+import static android.R.attr.type;
+
 /**
  * Created by Sandro on 01/06/2018.
  */
@@ -53,17 +55,27 @@ public class InterestArrayAdapter extends ArrayAdapter<Interest> {
             textViewSpecialty = (TextView) view.findViewById(R.id.textViewSpecialty);
             textViewDate = (TextView) view.findViewById(R.id.textViewDate);
             textViewName = (TextView) view.findViewById(R.id.textViewName);
-            //textViewType = (TextView) view.findViewById(R.id.textViewType);
+            textViewType = (TextView) view.findViewById(R.id.textViewType);
 
             Interest interest = ints.get(position);
+            String type = null;
+            if (interest.getType().equals("t")){
+                type = textViewType.getText().toString().trim()+" Teacher";
+            }
+            else{
+                type = textViewType.getText().toString().trim()+" Student";
+            }
             String specialtyText = textViewSpecialty.getText().toString()+" "+interest.getAdSpecialty();
             String dateText = textViewDate.getText().toString().trim()+" "+interest.getInterestDate();
             String userText = textViewName.getText().toString().trim()+" "+interest.getInterestedName();
+
+
 
             textViewTitle.setText(interest.getAdTitle());
             textViewSpecialty.setText(specialtyText);
             textViewDate.setText(dateText);
             textViewName.setText(userText);
+            textViewType.setText(type);
 
 
         }

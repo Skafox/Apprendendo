@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.fatecerss.tcc.apprendendo.view.NegotiationActivity"
+    android:windowSoftInputMode="adjustPan">
+
+    <include
+        android:id="@+id/tb_negotiation"
+        layout="@layout/app_bar_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></include>
+
+    <ListView
+        android:id="@+id/listViewNegotiation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:layout_below="@+id/tb_negotiation"
+        android:layout_above="@+id/ll_message">
+    </ListView>
+
+    <LinearLayout
+        android:id="@+id/ll_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimaryDark"
+        android:layout_alignParentBottom="true">
+        <EditText
+            android:id="@+id/tf_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Mensagem"
+            android:layout_weight="10"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
+            android:padding="@dimen/padding"/>
+        <ImageButton
+            android:id="@+id/bt_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_send"
+            android:layout_weight="1"
+            />
+
+    </LinearLayout>
+
+    
+
+</RelativeLayout>

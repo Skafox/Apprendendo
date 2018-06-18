@@ -7,6 +7,7 @@ package com.fatecerss.tcc.apprendendo.model;
 public class Interest {
 
     private String ownerId;
+    private String ownerName;
     private String interestedId;
     private String interestedName;
     private String adId;
@@ -14,12 +15,14 @@ public class Interest {
     private String adSpecialty;
     private String interestDate;
     private String interestId;
+    private String type;
 
     public Interest() {
     }
 
-    public Interest(String ownerId, String interestedId, String interestedName, String adId, String adTitle, String adSpecialty, String interestDate) {
+    public Interest(String ownerId, String ownerName, String interestedId, String interestedName, String adId, String adTitle, String adSpecialty, String interestDate) {
         this.ownerId = ownerId;
+        this.ownerName = ownerName;
         this.interestedId = interestedId;
         this.interestedName = interestedName;
         this.adId = adId;
@@ -27,6 +30,15 @@ public class Interest {
         this.adSpecialty = adSpecialty;
         this.interestDate = interestDate;
         this.interestId = null;
+        this.type = null;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getOwnerId() {
@@ -35,6 +47,14 @@ public class Interest {
 
     public void setOwnerId(String ownerId) {
         this.ownerId = ownerId;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
     }
 
     public String getInterestedId() {

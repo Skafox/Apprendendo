@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <GridLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:columnCount="3"
+        android:rowCount="3"
+        android:useDefaultMargins="true">
+
+        <TextView
+            android:id="@+id/textViewName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_columnSpan="3"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Nome do contato"
+            android:textAlignment="viewStart"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewAdTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_columnSpan="3"
+            android:layout_row="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/textViewAdTitle"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textViewDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:layout_row="2"
+            android:gravity="end"
+            android:text="@string/textViewLastModified"
+            android:textColor="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/textViewOwnerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_row="2"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/textViewUserAdOwner"
+            android:textAlignment="viewStart"
+            android:textColor="@color/colorAccent"
+            android:textSize="14sp" />
+
+    </GridLayout>
+</LinearLayout>

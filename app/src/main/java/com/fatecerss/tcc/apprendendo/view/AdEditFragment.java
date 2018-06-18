@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -69,7 +70,10 @@ public class AdEditFragment extends Fragment implements View.OnClickListener{
     private String specialty;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
+    private RadioButton rb_teacher;
+    private RadioButton rb_student;
     private String uId;
+    private String type;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private String adId;
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -104,6 +108,10 @@ public class AdEditFragment extends Fragment implements View.OnClickListener{
         bt_updateAd = (Button) view.findViewById(R.id.bt_updateAd);
         bt_deleteAd = (Button) view.findViewById(R.id.bt_deleteAd);
         spinnerSpecialty = (Spinner) view.findViewById(R.id.spinnerSpecialty);
+        rb_student = (RadioButton) view.findViewById(R.id.rb_student);
+        rb_teacher = (RadioButton) view.findViewById(R.id.rb_teacher);
+        rb_student.setEnabled(false);
+        rb_teacher.setEnabled(false);
 
         adsReference = databaseReference.child("advertisements");
         usersReference = databaseReference.child("users");
@@ -201,7 +209,7 @@ public class AdEditFragment extends Fragment implements View.OnClickListener{
 
                 //CRIA UM OBJETO ANUNCIO PARA COLOCAR NO BANCO DE DADOS
                 advertisement = new Advertisement(uId, title, description, specialty, sunday,
-                        monday, tuesday, wednesday, thursday, friday, saturday, morning, afternoon, night, today);
+                        monday, tuesday, wednesday, thursday, friday, saturday, morning, afternoon, night, today, type);
 
                 //VALIDA OS CAMPOS
                 if (TextUtils.isEmpty(title) || TextUtils.isEmpty(description) || specialty == null) {
@@ -291,6 +299,13 @@ public class AdEditFragment extends Fragment implements View.OnClickListener{
                     chk_morning.setChecked(advertisement.isMorning());
                     chk_afternoon.setChecked(advertisement.isAfternoon());
                     chk_night.setChecked(advertisement.isNight());
+                    type = advertisement.getType();
+                    if (type.equals("t")){
+                        rb_teacher.setChecked(true);
+                    }
+                    else{
+                        rb_student.setChecked(true);
+                    }
 
                     String specialtyResult = advertisement.getSpecialty();
                     String specialtyExpected1 = getActivity().getString(R.string.dropDownItem1);

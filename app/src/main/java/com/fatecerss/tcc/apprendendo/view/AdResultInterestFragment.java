@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,6 +61,9 @@ public class AdResultInterestFragment extends Fragment implements View.OnClickLi
     private ImageButton imageViewSendInterest;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
+    private RadioButton rb_teacher;
+    private RadioButton rb_student;
+    private String type;
     private String uId;
     private String adId;
     private String adOwnerId;
@@ -106,6 +110,10 @@ public class AdResultInterestFragment extends Fragment implements View.OnClickLi
         textViewAdOwner.setVisibility(View.GONE);
         textViewSignUp.setVisibility(View.GONE);
         imageViewSendInterest.setVisibility(View.GONE);
+        rb_student = (RadioButton) view.findViewById(R.id.rb_student);
+        rb_teacher = (RadioButton) view.findViewById(R.id.rb_teacher);
+        rb_student.setEnabled(false);
+        rb_teacher.setEnabled(false);
 
         adsReference = databaseReference.child("advertisements");
         usersReference = databaseReference.child("users");
@@ -185,7 +193,7 @@ public class AdResultInterestFragment extends Fragment implements View.OnClickLi
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String today = formatter.format(date);
         //Cria um novo interesse
-        Interest interest = new Interest(adOwnerId,uId,currentUser.getName(),adId,advertisement.getTitle(),advertisement.getSpecialty(),today);
+        Interest interest = new Interest(adOwnerId, adOwner.getName(), uId,currentUser.getName(),adId,advertisement.getTitle(),advertisement.getSpecialty(),today);
         //Valida o interesse se o interessado for o mesmo q o autor do anuncio ele não pode mandar interesse, manda um toast
         if (uId.equalsIgnoreCase(adOwnerId)){
             Toast.makeText(getActivity(), getActivity().getString(R.string.create_interest_same_owner), Toast.LENGTH_LONG).show();
@@ -246,7 +254,13 @@ public class AdResultInterestFragment extends Fragment implements View.OnClickLi
                     chk_morning.setEnabled(false);
                     chk_afternoon.setEnabled(false);
                     chk_night.setEnabled(false);
-
+                    type = advertisement.getType();
+                    if (type.equals("t")){
+                        rb_teacher.setChecked(true);
+                    }
+                    else{
+                        rb_student.setChecked(true);
+                    }
                     String specialtyResult = advertisement.getSpecialty();
                     String specialtyExpected1 = getActivity().getString(R.string.dropDownItem1);
                     String specialtyExpected2 = getActivity().getString(R.string.dropDownItem2);

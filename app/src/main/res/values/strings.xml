@@ -18,6 +18,9 @@
     <string name="create_biography">Biography</string>
     <string name="create_button">SignUp</string>
     <string name="signupmissing">Some informations are missing, please make sure all the fields are filled</string>
+    <string name="radiobuttonmissing">You need to select a type for the ad.</string>
+    <string name="typeTeacher">Teacher</string>
+    <string name="typeStudent">Student</string>
     <string name="signupfailpassword">Passwords doesn\'t match</string>
     <string name="signupfail">Could not register. Please contact the administrators.</string>
     <string name="validationfail">Username already exists, choose another username</string>
@@ -30,7 +33,9 @@
     <string name="updateSuccess">Values successfully updated.</string>
     <string name="deleteMessage">Are you sure you want to DELETE your ad? This can\'t be undone!</string>
     <string name="sendInterestMessage">Do you want to send an interest for this ad?</string>
+    <string name="sendNegotiation">Do you want to start a negotiation with this user?</string>
     <string name="create_interest_same_owner">You cannot send an interest for yourself.</string>
+    <string name="create_interest_success">Interest sent to the ad owner with success!</string>
 
     <string name="menuOptionProfile">My Profile</string>
     <string name="menuOptionCreateAd">My Ads</string>
@@ -57,6 +62,7 @@
     <string name="my_ads">My Advertisements</string>
     <string name="search_ads">Search an Advertisement</string>
     <string name="my_interests">My Interests</string>
+    <string name="my_negotiations">My Negotiations</string>
     <string name="sw_account">Enable/Disable account</string>
     <string name="btUpdate">Update My Profile</string>
 
@@ -83,10 +89,13 @@
     <string name="night">Night</string>
     <string name="textViewLastModified">Last Modified:</string>
     <string name="pg_create_ad">Creating Advertisement...</string>
+    <string name="pg_loading_message">Loading messages...</string>
     <string name="create_ad_success">Advertisement created successfully</string>
     <string name="update_ad_success">Information updated successfully</string>
     <string name="delete_ad_success">Advertisement deleted successfully</string>
     <string name="txt_specialty">Specialty:</string>
+    <string name="student">I\'m the Student</string>
+    <string name="teacher">I\'m the Teacher</string>
     <string name="bt_create_ad">Create Advertisement</string>
     <string name="bt_update_ad">Update Info</string>
     <string name="bt_delete_ad">Delete Ad</string>
@@ -110,5 +119,7 @@
     <string name="textViewUserName">User:</string>
     <string name="textViewNegotiate">Click the button to send a message to the interested negotiating about your ad</string>
     <string name="btNegotiate">Start a Negotiation</string>
+    <string name="textViewAdTitle">Ad:</string>
+    <string name="textViewUserAdOwner">Owner:</string>
 
 </resources>

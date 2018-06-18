@@ -26,6 +26,7 @@ public class Advertisement {
     private boolean night;
     private String specialty;
     private String registrationDate;
+    private String type;
 
     public Advertisement(){
 
@@ -34,7 +35,7 @@ public class Advertisement {
     public Advertisement(String uId, String title, String description, String specialty,
                          boolean sunday, boolean monday, boolean tuesday, boolean wednesday,
                          boolean thursday, boolean friday, boolean saturday,
-                         boolean morning, boolean afternoon, boolean night, String registrationDate) {
+                         boolean morning, boolean afternoon, boolean night, String registrationDate, String type) {
 
         this.adId = null;
         this.uId = uId;
@@ -52,6 +53,15 @@ public class Advertisement {
         this.afternoon = afternoon;
         this.night = night;
         this.registrationDate = registrationDate;
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getuId() {

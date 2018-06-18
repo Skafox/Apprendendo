@@ -139,7 +139,9 @@ public class HomeActivity extends AppCompatActivity
                 getSupportActionBar().setTitle(R.string.my_interests);
                 break;
             case R.id.nav_negotiation:
-
+                fragment = null;
+                fragment = new NegotiationListFragment();
+                getSupportActionBar().setTitle(R.string.my_negotiations);
                 break;
             case R.id.nav_contact:
 

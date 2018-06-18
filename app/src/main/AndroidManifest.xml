@@ -18,19 +18,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".view.SignUpActivity">
-        </activity>
+        <activity android:name=".view.SignUpActivity"></activity>
         <activity
             android:name=".view.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".view.LoginEmailActivity"
-            android:windowSoftInputMode="stateHidden">
-        </activity>
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity android:name=".view.NegotiationActivity"></activity>
     </application>
-
 
 </manifest>

@@ -30,6 +30,7 @@
     <dimen name="interestButtonMaxHeight">65dp</dimen>
     <dimen name="interestMarginBottom">30dp</dimen>
     <dimen name="interestMarginTop">50dp</dimen>
+    <dimen name="textViewInterestAdSize">200dp</dimen>
 
 
 </resources>

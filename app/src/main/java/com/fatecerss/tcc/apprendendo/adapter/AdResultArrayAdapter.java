@@ -54,15 +54,20 @@ public View getView(int position, View convertView, ViewGroup parent){
             textViewType=(TextView)view.findViewById(R.id.textViewType);
 
             Advertisement advertisement=ads.get(position);
+            String type = null;
+            if (advertisement.getType().equals("t")){
+                type = textViewType.getText().toString().trim()+" Teacher";
+            }
+            else{
+                type = textViewType.getText().toString().trim()+" Student";
+            }
             String specialtyText=textViewSpecialty.getText().toString()+" "+advertisement.getSpecialty();
             String dateText=textViewDate.getText().toString().trim()+" "+advertisement.getRegistrationDate();
-            //String authorText=textViewAuthor.getText().toString().trim()+advertisement.getuId();
-
-            //String typeText=textViewAuthor.getText().toString().trim()+" "+advertisement.getType();
 
             textViewTitle.setText(advertisement.getTitle());
             textViewSpecialty.setText(specialtyText);
             textViewDate.setText(dateText);
+            textViewType.setText(type);
 
             }
 

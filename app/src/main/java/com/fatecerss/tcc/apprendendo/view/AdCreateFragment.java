@@ -6,6 +6,7 @@ import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -31,6 +34,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import static android.R.attr.checked;
+import static android.R.attr.type;
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
 /**
@@ -55,6 +60,9 @@ public class AdCreateFragment extends Fragment implements View.OnClickListener {
     private CheckBox chk_night;
     private Button bt_ad;
     private Spinner spinnerSpecialty;
+    private RadioButton rb_teacher;
+    private RadioButton rb_student;
+    private String type = null;
     private String specialty;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
@@ -86,6 +94,12 @@ public class AdCreateFragment extends Fragment implements View.OnClickListener {
         chk_night = (CheckBox) view.findViewById(R.id.chk_night);
         bt_ad = (Button) view.findViewById(R.id.bt_ad);
         spinnerSpecialty = (Spinner) view.findViewById(R.id.spinnerSpecialty);
+        rb_student = (RadioButton) view.findViewById(R.id.rb_student);
+        rb_teacher = (RadioButton) view.findViewById(R.id.rb_teacher);
+
+        //lida com o radio button
+
+
 
         //SETA O COMBOBOX
         String[] items = new String[]{getActivity().getString(R.string.dropDownItem1),getActivity().getString(R.string.dropDownItem2),
@@ -128,7 +142,6 @@ public class AdCreateFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
-
     //Método 2
     public void createAd() {
 
@@ -148,10 +161,20 @@ public class AdCreateFragment extends Fragment implements View.OnClickListener {
         Date date = Calendar.getInstance().getTime();
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String today = formatter.format(date);
+        if (rb_student.isChecked()){
+            type = "s";
+        }
+        else if (rb_teacher.isChecked()){
+            type = "t";
+        }
+        else{
+            Toast.makeText(getActivity(), getActivity().getString(R.string.radiobuttonmissing), Toast.LENGTH_LONG).show();
+            return;
+        }
 
         //CRIA UM OBJETO ANUNCIO PARA COLOCAR NO BANCO DE DADOS
         advertisement = new Advertisement(uId, title, description, specialty, sunday,
-                monday, tuesday, wednesday, thursday, friday, saturday, morning, afternoon, night, today);
+                monday, tuesday, wednesday, thursday, friday, saturday, morning, afternoon, night, today, type);
 
         //VALIDA OS CAMPOS
         if (TextUtils.isEmpty(title) || TextUtils.isEmpty(description) || specialty == null) {
@@ -182,13 +205,23 @@ public class AdCreateFragment extends Fragment implements View.OnClickListener {
                 FragmentManager fragmentManager = getFragmentManager();
                 Fragment fragment = null;
                 fragmentManager.popBackStack();
-                /*fragment = new AdListFragment();
-                if (fragment != null) {
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.layoutContentHome, fragment);
-                    fragmentTransaction.commit();
-                }*/
+
             }
+    }
+
+    public void onRadioButtonClicked(View view) {
+        boolean checked = ((RadioButton) view).isChecked();
+
+        switch(view.getId()) {
+            case R.id.rb_student:
+                if (checked)
+                    type = "s";
+                break;
+            case R.id.rb_teacher:
+                if (checked)
+                    type = "t";
+                break;
+        }
     }
 
     @Override
