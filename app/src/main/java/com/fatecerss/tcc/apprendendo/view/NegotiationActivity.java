@@ -83,11 +83,11 @@ public class NegotiationActivity extends AppCompatActivity {
         }
 
         if (uId.equalsIgnoreCase(negotiation.getInterestedId())){
-            toolbar.setTitle(negotiation.getInterestedName());
+            toolbar.setTitle(negotiation.getAdOwnerName());
             SENDERINTERESTED = 1;
         }
         else if (uId.equalsIgnoreCase(negotiation.getAdOwnerId())){
-            toolbar.setTitle(negotiation.getAdOwnerName());
+            toolbar.setTitle(negotiation.getInterestedName());
             SENDERINTERESTED = 0;
         }
 
